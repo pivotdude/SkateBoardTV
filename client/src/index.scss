@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import "Constants.scss";
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $bg;
+}
+* {
+  font-family: 'Poppins', sans-serif;
+  padding: 0; margin: 0;
+}
+
+.container {
+  padding-top: 35px;
+  padding-left: 85px;
+  &__title {
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 40px;
+    color: #FFFFFF;
+  }
+}

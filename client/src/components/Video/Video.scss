@@ -1,0 +1,65 @@
+@import './../../Constants';
+.video {
+  position: relative;
+  background: $video-color;
+  border-radius: 20px;
+  width: 259px;
+  height: 313px;
+  overflow: hidden;
+  margin-top: 40px;
+  margin-right: 50px;
+
+  &__author-image {
+    position: absolute;
+    right: 20px;
+    top: 137px;
+  }
+
+  &-info {
+    padding: 10px 20px;
+    height: 100%;
+
+    &__author {
+      font-weight: 400;
+      font-size: 13px;
+      color: #B7B9D2;
+    }
+    &__title {
+      margin-top: 8px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 26px;
+      letter-spacing: 0.3px;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+    &__statistic {
+      margin-top: 16px;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 12px;
+      color: #808191;
+    }
+    &__duration {
+      position: absolute;
+      background: #242730;
+      opacity: 0.8;
+      border-radius: 7px;
+      font-weight: 500;
+      font-size: 10px;
+      color: #FFFFFF;
+      top: 10px;
+      right: 10px;
+      padding: 5px 7px;
+    }
+  }
+  .video-info__title:hover {
+    filter: brightness(0.7);
+    transition: .5s;
+  }
+  &__image, &-info__title {
+    cursor: pointer;
+  }
+
+
+}

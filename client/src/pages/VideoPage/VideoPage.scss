@@ -1,0 +1,79 @@
+.fullscreen {
+  display: flex;
+
+  &-player {
+    width: 939px;
+    height: 541px;
+    //background: #B7B9D2;
+  }
+
+  &-info {
+    margin-left: 38px;
+
+    &-action {
+      margin-left: 35px;
+
+      &__el {
+        margin-right: 25px;
+      }
+    }
+
+    &__title {
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 20px;
+      color: #FFFFFF;
+    }
+    &__date {
+      margin-top: 20px;
+      color: #ffffff;
+    }
+    &__views {
+      margin-top: 5px;
+      color: #ffffff;
+    }
+    &__description {
+      line-height: 180%;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #ffffff;
+      width: 650px;
+    }
+
+    &-author {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      &__name {
+        margin-left: 20px;
+        font-size: 13px;
+        color: #B7B9D2;
+      }
+      &__follow-button {
+        margin-left: 38px;
+      }
+    }
+  }
+}
+.similar {
+  margin-top: 75px;
+  &__title {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 600;
+  }
+}
+.comments {
+  margin-top: 75px;
+  &__title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 50px;
+  }
+}
+.video-js {
+  width: 939px;
+  height: 541px;
+  //background: #B7B9D2;
+}

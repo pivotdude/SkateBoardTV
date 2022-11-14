@@ -1,0 +1,16 @@
+.navigation-menu {
+  margin-top: 35px;
+  &__title {
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 11px;
+    letter-spacing: 1.5px;
+    color: #808191;
+    mix-blend-mode: normal;
+    opacity: 0.5;
+    margin-bottom: 24px;
+  }
+  &__hr {
+    border: 1px solid #34373C;
+  }
+}

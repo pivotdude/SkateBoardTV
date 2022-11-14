@@ -1,0 +1,64 @@
+.banner {
+  border-radius: 20px;
+  position: relative;
+
+  margin-right: 60px;
+  margin-top: 20px;
+
+  &__image {
+    cursor: pointer;
+    -webkit-user-drag: none;
+  }
+  &__title {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: 0.3px;
+    color: #FFFFFF;
+    width: 235px;
+  }
+  &-info {
+    display: flex;
+    position: absolute;
+    left: 35px;
+    align-items: center;
+
+    &_large {
+      top: 214px;
+    }
+    &_small {
+      top: 160px;
+      display: block;
+    }
+
+    &-author {
+      margin-left: 10px;
+      &__name{
+        font-weight: 300;
+        font-size: 15px;
+        color: #FFFFFF;
+      }
+      &__video {
+        font-weight: 400;
+        font-size: 12px;
+        color: #FFFFFF;
+        opacity: 0.8;
+      }
+    }
+  }
+  &__duration {
+    position: absolute;
+    background: #242730;
+    opacity: 0.8;
+    border-radius: 7px;
+    font-weight: 500;
+    font-size: 10px;
+    color: #FFFFFF;
+    right: 20px;
+    bottom: 20px;
+    padding: 5px 7px;
+  }
+}

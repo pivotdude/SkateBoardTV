@@ -1,0 +1,24 @@
+@import "./../../Constants.scss";
+
+.navigation-menu-el {
+  display: flex;
+  margin-bottom: 32px;
+  cursor: pointer;
+  align-items: center;
+  text-decoration: none;
+
+  &:hover &__title{
+    filter: brightness(2);
+  }
+
+  &__title {
+    margin-left: 10px;
+    font-size: 14px;
+    line-height: 15px;
+    color: #808191;
+
+    &_active {
+      font-weight: 700;
+    }
+  }
+}

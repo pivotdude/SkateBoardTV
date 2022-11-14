@@ -1,0 +1,23 @@
+.comment {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  margin-bottom: 40px;
+  &__user-photo {}
+  &-info {
+    margin-left: 25px;
+    &__user-name {
+      color: #B7B9D2;
+      font-weight: 600;
+    }
+    &__content {
+      font-size: 16px;
+      line-height: 24px;
+      width: 95%;
+    }
+  }
+  &-actions {
+    font-size: 14px;
+    display: flex;
+  }
+}
