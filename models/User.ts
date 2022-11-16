@@ -20,10 +20,19 @@ const schema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
+    ],
+    likes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Video'
+        }
+    ],
+    viewed: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Video'
+        }
     ]
-
-
-
 })
 
-module.exports = model('Video', schema)
+module.exports = model('User', schema)

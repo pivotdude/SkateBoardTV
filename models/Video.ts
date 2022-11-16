@@ -4,7 +4,7 @@ const schema = new Schema({
     title: String,
     likes: Number,
     dislikes: Number,
-    author: 'link',
+    author: {type: Schema.Types.ObjectId, ref: 'User'},
     date: Date,
     views: Number,
     description: String,
@@ -20,8 +20,6 @@ const schema = new Schema({
             dislike: Number
         }
     ]
-
-
 })
 
 module.exports = model('Video', schema)
