@@ -5,7 +5,7 @@ import {VideoModel} from "../../Models";
 
 interface VideosListProps {
     videos: Array<VideoModel>,
-    display: 'block' | 'flex'
+    display: 'block' | 'flex',
 }
 
 const VideosList = (props: VideosListProps) => {

@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import Navigations from "./components/Navigation/Navigations";
 import InTrend from "./pages/InTrend/InTrend";
 import Playlist from "./pages/Playlist/Playlist";
+import PlaylistVideo from "./pages/PlaylistVideo/PlaylistVideo";
 import Competition from "./pages/Competion/Competition";
 import Tutorials from "./pages/Tutorials/Tutorials";
 import VideoPage from "./pages/VideoPage/VideoPage";
@@ -26,7 +27,8 @@ function App() {
                   <Route path="/playlist" element={<Playlist />} />
                   <Route path="/tutorials" element={<Tutorials />} />
                   <Route path="/competition" element={<Competition />} />
-                  <Route path="/video/:videoid" element={<VideoPage />} />
+                  <Route path="/video/:videoId" element={<VideoPage />} />
+                  <Route path="/playlist/:playlistId" element={<PlaylistVideo />} />
                 </Routes>
               </main>
 
