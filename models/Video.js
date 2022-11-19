@@ -2,6 +2,7 @@ const {Schema, model} = require(`mongoose`)
 
 const schema = new Schema({
     title: String,
+    preview: String,
     likes: Number,
     dislikes: Number,
     author: {type: Schema.Types.ObjectId, ref: 'User'},

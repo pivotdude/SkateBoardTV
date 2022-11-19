@@ -16,7 +16,6 @@ import trendingActive from './img/TrendingActive.svg'
 import playlistActive from './img/PlaylistActive.svg'
 import competitionActive from './img/CompetitionActive.svg'
 
-
 const Navigations = () => {
     const [link, setLink] = useState('');
     const location = useLocation()
@@ -36,6 +35,9 @@ const Navigations = () => {
             <NavigationMenu title='CATEGORY'>
                 <NavigationMenuEl title='Tutorials' image={link == 'tutorials' ? trendingActive : trending} />
                 <NavigationMenuEl title='Competition' image={link == 'competition' ? competitionActive : competition} />
+                <NavigationMenuEl title='Review' image={link == 'review' ? competitionActive : competition} />
+                <NavigationMenuEl title='Skating' image={link == 'skating' ? competitionActive : competition} />
+                <NavigationMenuEl title='Other' image={link == 'other' ? competitionActive : competition} />
             </NavigationMenu>
 
             <NavigationMenu title='SUBSCRIBERS'>

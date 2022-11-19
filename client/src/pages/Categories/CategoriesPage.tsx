@@ -1,10 +1,14 @@
 import React from 'react';
-import VideosList from "../../components/Video/VideosList";
 import {VideoModel} from "../../Models";
 import video1 from "../Discover/img/video1.png";
 import author1 from "../Discover/img/author1.png";
+import VideosList from "../../components/Video/VideosList";
 
-const Tutorials = () => {
+interface CategoriesPageProps {
+    title: string
+}
+
+const CategoriesPage = (props: CategoriesPageProps) => {
     const videos: Array<VideoModel> = [
         {_id: '1das', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
         {_id: '2as', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
@@ -12,11 +16,13 @@ const Tutorials = () => {
     ]
 
     return (
-        <div className='container'>
-            <p className='container__title'>Tutorials</p>
-            <VideosList videos={videos} display='flex' />
+        <div>
+            <div className='container InTrend__container'>
+                <p className='container__title'>{props.title}</p>
+                <VideosList videos={videos} display='flex' />
+            </div>
         </div>
     );
 };
 
-export default Tutorials;
+export default CategoriesPage;
