@@ -9,6 +9,7 @@ const schema = new Schema({
     date: Date,
     views: Number,
     description: String,
+    tags: [],
     comments: [
         {
             from: {
