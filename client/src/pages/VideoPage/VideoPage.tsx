@@ -1,23 +1,41 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import './VideoPage.scss'
 import like from './img/like.svg'
 import dislike from './img/dislike.svg'
 import follow from './img/follow.svg'
 import author from './../Discover/img/author1.png'
-import {VideoModel} from "../../Models";
+import {StateModel, VideoModel} from "../../Models";
 import video1 from "../Discover/img/video1.png";
 import author1 from "../Discover/img/author1.png";
 import VideosList from "../../components/Video/VideosList";
 import Comment from './Cooment'
-import Player from "./Player";
 import VideoPlayer from "./VideoPlayer";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchVideoById} from "../../redux/actions";
 
 const VideoPage = () => {
-    const params = useParams()
-    console.log(params.videoid)
+    // const [link, setLink] = useState('');
+    // const location = useLocation()
+    // useEffect( () => {
+    //     setLink(location.pathname.replace('/video/', ''))
+    //     console.log(link)
+    // }, [location])
 
-    const videos: Array<VideoModel> = [
+    const dispatch: Function  = useDispatch()
+    const videos = useSelector((state: StateModel) => state.video.video) // : Array<VideoModel>
+    const loading: boolean = useSelector((state: StateModel) => state.app.loading)
+
+
+    const params = useParams()
+    useEffect(() => {
+        let videoid = params.videoId
+        console.log(videoid)
+        dispatch(fetchVideoById(videoid))
+        // console.log(videos)
+    }, [params])
+
+    const SimilarVideos: Array<VideoModel> = [
         {_id: '1', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
         {_id: '2', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
         {_id: '3', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
@@ -27,6 +45,10 @@ const VideoPage = () => {
         {_id: '7', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
         {_id: '8', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
     ]
+
+    if (loading) {
+        return <p>Loading...</p>
+    }
 
     return (
         <div className='container video-page__container'>
@@ -63,7 +85,7 @@ const VideoPage = () => {
 
             <div className='similar'>
                 <p className='similar__title'>Similar</p>
-                <VideosList videos={videos} display='flex' />
+                <VideosList videos={SimilarVideos} display='flex' />
             </div>
 
             <div className='comments'>

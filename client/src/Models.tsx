@@ -18,3 +18,12 @@ export interface VideoModel {
     VideoInfo: string,
     duration: number
 }
+export interface StateModel {
+    app: {
+        loading: boolean,
+    },
+    video: {
+        video: object,
+    },
+    auth: object
+}

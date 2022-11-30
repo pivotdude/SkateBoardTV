@@ -3,11 +3,13 @@ let Video = require("../models/Video");
 let User = require("../models/User");
 let Playlist = require("../models/Playlist");
 let router = express.Router();
+let mongoose = require('mongoose')
 
 router.get('/videos/:videoId',
     async function (req, res, next) {
         let videoId = req.params["videoId"]
-        let results = await Video.find({_id: videoId})
+        let results = await Video.findOne({id: videoId}).populate('author')
+        console.log(results)
         res.json(results)
     }
 )

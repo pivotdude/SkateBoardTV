@@ -2,7 +2,11 @@ const {Schema, model} = require(`mongoose`)
 
 const schema = new Schema({
     name: String,
+    login: String,
+    password: String,
     regDate: Date,
+    avatar: String,
+    description: String,
     subscribers: [
         {
             type: Schema.Types.ObjectId,

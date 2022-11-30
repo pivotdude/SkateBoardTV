@@ -1,13 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import videojs from 'video.js';
-// those imports are important
 import qualitySelector from 'videojs-hls-quality-selector';
 import qualityLevels from 'videojs-contrib-quality-levels';
 
 
-
 const VideoPlayer = ()  => {
-
     const videoRef = useRef();
     const [player, setPlayer] = useState(undefined);
     let liveURL = '/videos/katana/dash.mpd'
@@ -48,7 +45,6 @@ const VideoPlayer = ()  => {
     return (
         <div data-vjs-player>
             <video ref={videoRef} className="video-js vjs-default-skin vjs-big-play-centered">
-
             </video>
         </div>
     );
