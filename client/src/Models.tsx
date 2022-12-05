@@ -10,7 +10,7 @@ export interface BannerModel {
 }
 
 export interface VideoModel {
-    _id: string,
+    _id?: string,
     title: string,
     image: any,
     UserImage: string | object,
@@ -18,12 +18,56 @@ export interface VideoModel {
     VideoInfo: string,
     duration: number
 }
+
+interface UserModel {
+    _id: string,
+    name: string,
+    login: string,
+    password: string,
+    regDate: string,
+    avatar: string,
+    description: string,
+    subscribers: Array<string>,
+    videos: Array<string>,
+    subscribe: Array<string>,
+    likes: Array<string>,
+    viewed: Array<string>,
+}
+
+interface UserModelTiny {
+    _id: string,
+    name: string,
+    avatar: string
+}
+
+export interface newVideoModel {
+    _id?: string,
+    title: string,
+    preview: string,
+    likes: number,
+    dislikes: number
+    author: UserModelTiny
+    date: string
+    views: number
+    description: string
+    tags?: Array<string>
+    comments: [
+        {
+            from: UserModelTiny,
+            content: string,
+            date: string,
+            like: number,
+            dislike: number
+        }
+    ]
+}
+
 export interface StateModel {
     app: {
         loading: boolean,
     },
     video: {
-        video: object,
+        videoById: object,
     },
     auth: object
 }

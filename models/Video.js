@@ -1,12 +1,12 @@
 const {Schema, model} = require(`mongoose`)
 
 const schema = new Schema({
-    _id: String,
+    _id: {type: String, unique: true},
     title: String,
     preview: String,
     likes: Number,
     dislikes: Number,
-    author: {type: Schema.Types.ObjectId, ref: 'User'},
+    author: {type: String, ref: 'User'},
     date: Date,
     views: Number,
     description: String,
@@ -14,7 +14,7 @@ const schema = new Schema({
     comments: [
         {
             from: {
-                type: Schema.Types.ObjectId,
+                type: String,
                 ref: 'User'
             },
             content: String,

@@ -1,4 +1,4 @@
-export const GET_VIDEO_BY_ID = 'VIDEO/GETVIDEOONID'
+export const GET_VIDEO_BY_ID = 'VIDEO/GET_VIDEO_BY_ID'
 
 // AuthorizationReducer
 export const AUTHORIZATION = 'AUTH/AUTHORIZATION'

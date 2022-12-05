@@ -3,17 +3,16 @@ import videojs from 'video.js';
 import qualitySelector from 'videojs-hls-quality-selector';
 import qualityLevels from 'videojs-contrib-quality-levels';
 
-
-const VideoPlayer = ()  => {
+const VideoPlayer = (props)  => {
     const videoRef = useRef();
     const [player, setPlayer] = useState(undefined);
-    let liveURL = '/videos/katana/dash.mpd'
+    // let liveURL = '/videos/katana/dash.mpd'
 
     useEffect(() => {
         if (player) {
-            player.src([liveURL]);
+            player.src([props.url]);
         }
-    }, [liveURL]);
+    }, [props.url]);
 
     useEffect(() => {
         const videoJsOptions = {
@@ -24,7 +23,7 @@ const VideoPlayer = ()  => {
             responsive: true,
             sources: [
                 {
-                    src: liveURL,
+                    src: props.url,
                 },
             ],
         };

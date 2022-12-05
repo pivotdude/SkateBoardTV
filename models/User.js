@@ -1,6 +1,7 @@
 const {Schema, model} = require(`mongoose`)
 
 const schema = new Schema({
+    _id: {type: String, unique: true},
     name: String,
     login: String,
     password: String,
@@ -9,31 +10,31 @@ const schema = new Schema({
     description: String,
     subscribers: [
         {
-            type: Schema.Types.ObjectId,
+            type: String,
             ref: 'User'
         },
     ],
     videos: [
         {
-            type: Schema.Types.ObjectId,
+            type: String,
             ref: 'Video'
         },
     ],
     subscribe: [
         {
-            type: Schema.Types.ObjectId,
+            type: String,
             ref: 'User'
         },
     ],
     likes: [
         {
-            type: Schema.Types.ObjectId,
+            type: String,
             ref: 'Video'
         }
     ],
     viewed: [
         {
-            type: Schema.Types.ObjectId,
+            type: String,
             ref: 'Video'
         }
     ]

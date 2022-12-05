@@ -6,7 +6,7 @@ import {
     GET_VIDEO_BY_ID,
 } from './types'
 
-function fetchData(route: string, types: string, method: 'GET' | 'POST' = 'GET' ,data:object = {}):object {
+function fetchData(route: string, types: string, method: 'GET' | 'POST' = 'GET' ,data: object = {}):object {
     return async (dispatch: Function) => {
         dispatch(showLoader())
 
