@@ -1,6 +1,19 @@
 .banners {
   margin-top: 40px;
   display: flex;
-  flex-wrap: wrap;
+  width: 90%;
+  overflow: hidden;
+  overflow-x: scroll;
+  padding-bottom: 5px;
 }
 
+.banners::-webkit-scrollbar {
+  width: 12px;               /* ширина scrollbar */
+}
+.banners::-webkit-scrollbar-track {
+  background: #2F1F2B;        /* цвет дорожки */
+}
+.banners::-webkit-scrollbar-thumb {
+  background-color: #ffffff;    /* цвет плашки */
+  border-radius: 20px;       /* закругления плашки */
+}

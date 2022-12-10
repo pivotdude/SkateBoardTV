@@ -16,7 +16,20 @@
 
       &__el {
         margin-right: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
       }
+
+      &__count{
+        color: #FFFFFF;
+      }
+
+      &__image {
+
+      }
+
     }
 
     &__title {
@@ -39,6 +52,13 @@
       font-size: 14px;
       color: #ffffff;
       width: 650px;
+      overflow: hidden;
+      height: 260px;
+
+      &-button {
+        color: #ffffff;
+        cursor: pointer;
+      }
     }
 
     &-author {

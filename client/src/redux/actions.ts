@@ -3,7 +3,7 @@ import {
     HIDE_LOADER,
     AUTHORIZATION,
     REGISTRATION,
-    GET_VIDEO_BY_ID,
+    GET_VIDEO_BY_ID, SHOW_PROFILE_MENU, HIDE_PROFILE_MENU,
 } from './types'
 
 function fetchData(route: string, types: string, method: 'GET' | 'POST' = 'GET' ,data: object = {}):object {
@@ -38,6 +38,14 @@ export function showLoader():object {
 export function hideLoader():object {
     return {type: HIDE_LOADER}
 }
+
+export function showProfileMenu():object {
+    return {type: SHOW_PROFILE_MENU}
+}
+export function hideProfileMenu():object {
+    return {type: HIDE_PROFILE_MENU}
+}
+
 //
 // export function authAction(data: object):object {
 //     console.log(data)

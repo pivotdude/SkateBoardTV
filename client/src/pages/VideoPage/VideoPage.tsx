@@ -17,6 +17,7 @@ import NoAvatar from './img/NoAvatar.svg'
 
 const VideoPage = () => {
     const [url, setUrl] = useState('')
+    const [toggle, setToggle] = useState(false)
     const dispatch: Function  = useDispatch()
     const video: newVideoModel | any = useSelector((state: StateModel) => state.video.videoById)
     const loading: boolean = useSelector((state: StateModel) => state.app.loading)
@@ -24,7 +25,6 @@ const VideoPage = () => {
     const {videoId} = useParams()
 
     useEffect(() => {
-
         dispatch(fetchVideoById(videoId))
         setUrl(`/videos/${videoId}/dash.mpd`)
     }, [videoId])
@@ -33,12 +33,36 @@ const VideoPage = () => {
         return null
     }
 
-    if (!loading) {
-        let name: HTMLElement | null = document.getElementById('name')
+    if (!loading && video) {
+
+        let name = document.getElementById('name') as HTMLElement
         if (name) {
             name.textContent = video['author'].name
         }
+
+        let count = document.getElementById('count') as HTMLElement
+        if (count) {
+            count.textContent = video['author'].subscribersNumbers
+        }
     }
+
+    function showAll() {
+        setToggle(prev => !prev)
+        let descr = document.querySelector('.fullscreen-info__description') as HTMLElement
+        let button = document.querySelector('.fullscreen-info__description-button') as HTMLElement
+        if (toggle) {
+            descr.style.overflow = 'visible'
+            descr.style.height = 'auto'
+            button.textContent = 'Скрыть описание'
+
+        } else {
+            descr.style.overflow = 'hidden'
+            descr.style.height = '260px'
+            button.textContent = 'Развернуть описание'
+        }
+    }
+
+
 
     const SimilarVideos: Array<VideoModel> = [
         {_id: '1', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
@@ -76,16 +100,27 @@ const VideoPage = () => {
 
                         <img className='fullscreen-info-author__image' src={NoAvatar} />
 
-                        <p className='fullscreen-info-author__name' id='name'>MAxi</p>
+                        <p className='fullscreen-info-author__name' id='name'></p>
+                        <p id='count'></p>
                         <img className='fullscreen-info-author__follow-button' src={follow}/>
                         <div className='fullscreen-info-action'>
-                            <img className='fullscreen-info-action__el' src={like} />
-                            <img className='fullscreen-info-action__el' video-action src={dislike} />
+
+                            <div className="fullscreen-info-action__el">
+                                <img className='fullscreen-info-action__image' src={like} />
+                                <p className='fullscreen-info-action__count'>{video.likes}</p>
+                            </div>
+
+                            <div className="fullscreen-info-action__el">
+                                <img className='fullscreen-info-action__image' video-action src={dislike} />
+                                <p className='fullscreen-info-action__count'>{video.dislikes}</p>
+                            </div>
+
                         </div>
                     </div>
                     <p className='fullscreen-info__date'>{video.date}</p>
                     <p className='fullscreen-info__views'>{video.views} views</p>
-                    <p className='fullscreen-info__description'>{video.description}</p>
+                    <pre className='fullscreen-info__description'>{video.description}</pre>
+                    <p className='fullscreen-info__description-button' onClick={showAll}>Развернуть описание</p>
                 </div>
             </div>
 

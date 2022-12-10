@@ -6,7 +6,6 @@ import qualityLevels from 'videojs-contrib-quality-levels';
 const VideoPlayer = (props)  => {
     const videoRef = useRef();
     const [player, setPlayer] = useState(undefined);
-    // let liveURL = '/videos/katana/dash.mpd'
 
     useEffect(() => {
         if (player) {

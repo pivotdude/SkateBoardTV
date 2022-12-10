@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: $bg;
+  width: 100%;
 }
 * {
   font-family: 'Poppins', sans-serif;
@@ -15,10 +16,15 @@ body {
 .container {
   padding-top: 35px;
   padding-left: 85px;
+  margin-top: 20px;
+  width: 100%;
   &__title {
     font-weight: 600;
     font-size: 40px;
     line-height: 40px;
     color: #FFFFFF;
+  }
+  &_discover {
+    width: 87%;
   }
 }

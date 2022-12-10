@@ -11,6 +11,12 @@ import UserPhoto from "./img/Group 368.png";
 import small from './img/small.png'
 
 const Discover = () => {
+    useEffect(() => {
+        let banners = document.querySelector('.banners') as HTMLElement
+        banners.scrollIntoView()
+    }, [])
+
+
     const videos: Array<VideoModel> = [
         {_id: '1506f92c4e4ab', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
         {_id: '2', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
@@ -41,6 +47,13 @@ const Discover = () => {
         {_id: '12asjdjsa', size: "large", bannerImage: photo, title: 'How to do Basic Jumping and how to landing safely', UserImage: UserPhoto, UserName: 'Thomas Hope', VideoInfo: '53K views  •  2 weeks ago', duration: 7},
         {_id: 'askdk2kaksd2', size: "small", bannerImage: small, title: 'Skateboard Tips You need to know', UserImage: UserPhoto, UserName: 'Thomas Hope', VideoInfo: '53K views  •  2 weeks ago', duration: 10},
         {_id: 'asd;a;sd;s;a2', size: "small", bannerImage: small, title: 'Skateboard Tips You need to know', UserImage: UserPhoto, UserName: 'Thomas Hope', VideoInfo: '53K views  •  2 weeks ago', duration: 2},
+        {_id: 'asd;a;sфыd;s;a2', size: "small", bannerImage: small, title: 'Skateboard Tips You need to know', UserImage: UserPhoto, UserName: 'Thomas Hope', VideoInfo: '53K views  •  2 weeks ago', duration: 2},
+        {_id: 'asd;a;sd;sыяч;a2', size: "small", bannerImage: small, title: 'Skateboard Tips You need to know', UserImage: UserPhoto, UserName: 'Thomas Hope', VideoInfo: '53K views  •  2 weeks ago', duration: 2},
+        {_id: 'asd;a;ячsd;s;a2', size: "small", bannerImage: small, title: 'Skateboard Tips You need to know', UserImage: UserPhoto, UserName: 'Thomas Hope', VideoInfo: '53K views  •  2 weeks ago', duration: 2},
+        {_id: 'asd;a;смsd;s;a2', size: "small", bannerImage: small, title: 'Skateboard Tips You need to know', UserImage: UserPhoto, UserName: 'Thomas Hope', VideoInfo: '53K views  •  2 weeks ago', duration: 2},
+        {_id: 'asd;a;sd;ыs;a2', size: "small", bannerImage: small, title: 'Skateboard Tips You need to know', UserImage: UserPhoto, UserName: 'Thomas Hope', VideoInfo: '53K views  •  2 weeks ago', duration: 2},
+        {_id: 'asd;a;sыфывd;s;a2', size: "small", bannerImage: small, title: 'Skateboard Tips You need to know', UserImage: UserPhoto, UserName: 'Thomas Hope', VideoInfo: '53K views  •  2 weeks ago', duration: 2},
+        {_id: 'asd;a;sdфыв;s;a2', size: "small", bannerImage: small, title: 'Skateboard Tips You need to know', UserImage: UserPhoto, UserName: 'Thomas Hope', VideoInfo: '53K views  •  2 weeks ago', duration: 2},
     ]
 
 
@@ -53,7 +66,7 @@ const Discover = () => {
     }, [location])
 
     return (
-        <div className='container'>
+        <div className='container container_discover'>
             <p className='container__title'>Discover</p>
             <Banners banners={bannersArray} />
 

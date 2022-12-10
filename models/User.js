@@ -8,6 +8,7 @@ const schema = new Schema({
     regDate: Date,
     avatar: String,
     description: String,
+    subscribersNumbers: Number,
     subscribers: [
         {
             type: String,

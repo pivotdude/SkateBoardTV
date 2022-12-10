@@ -3,6 +3,12 @@
   align-items: center;
   //margin-left: 385px;
   margin-right: 20px;
+  cursor: pointer;
+
+  &:hover {
+
+  }
+
   &__photo {
     width: 32px;
     height: 32px;
@@ -19,4 +25,15 @@
     margin-left: 35px;
   }
 
+}
+.profile-menu {
+  background: #1F1D2B;
+  position: absolute;
+  right: 90px;
+  display: none;
+  &__link {
+    padding: 4px 10px;
+    color: #ffffff;
+    font-size: 16px;
+  }
 }

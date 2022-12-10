@@ -26,6 +26,7 @@ interface UserModel {
     password: string,
     regDate: string,
     avatar: string,
+    subscribersNumbers: 1,
     description: string,
     subscribers: Array<string>,
     videos: Array<string>,
@@ -37,7 +38,8 @@ interface UserModel {
 interface UserModelTiny {
     _id: string,
     name: string,
-    avatar: string
+    avatar: string,
+    subscribersNumbers: 1,
 }
 
 export interface newVideoModel {
