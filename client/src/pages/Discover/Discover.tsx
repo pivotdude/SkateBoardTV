@@ -11,10 +11,10 @@ import UserPhoto from "./img/Group 368.png";
 import small from './img/small.png'
 
 const Discover = () => {
-    useEffect(() => {
-        let banners = document.querySelector('.banners') as HTMLElement
-        banners.scrollIntoView()
-    }, [])
+    // useEffect(() => {
+    //     let banners = document.querySelector('.banners') as HTMLElement
+    //     banners.scrollIntoView()
+    // }, [])
 
 
     const videos: Array<VideoModel> = [
@@ -57,13 +57,13 @@ const Discover = () => {
     ]
 
 
-    const location = useLocation()
-    const navigate = useNavigate()
-    useEffect( () => {
-        if (location.pathname == '/') {
-            navigate('/discover')
-        }
-    }, [location])
+    // const location = useLocation()
+    // const navigate = useNavigate()
+    // useEffect( () => {
+    //     if (location.pathname == '/') {
+    //         navigate('/discover')
+    //     }
+    // }, [location])
 
     return (
         <div className='container container_discover'>

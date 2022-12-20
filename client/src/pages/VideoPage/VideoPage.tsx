@@ -33,24 +33,11 @@ const VideoPage = () => {
         return null
     }
 
-    if (!loading && video) {
-
-        let name = document.getElementById('name') as HTMLElement
-        if (name) {
-            name.textContent = video['author'].name
-        }
-
-        let count = document.getElementById('count') as HTMLElement
-        if (count) {
-            count.textContent = video['author'].subscribersNumbers
-        }
-    }
-
     function showAll() {
-        setToggle(prev => !prev)
+
         let descr = document.querySelector('.fullscreen-info__description') as HTMLElement
         let button = document.querySelector('.fullscreen-info__description-button') as HTMLElement
-        if (toggle) {
+        if (!toggle) {
             descr.style.overflow = 'visible'
             descr.style.height = 'auto'
             button.textContent = 'Скрыть описание'
@@ -60,6 +47,7 @@ const VideoPage = () => {
             descr.style.height = '260px'
             button.textContent = 'Развернуть описание'
         }
+        setToggle(prev => !prev)
     }
 
 
@@ -100,11 +88,10 @@ const VideoPage = () => {
 
                         <img className='fullscreen-info-author__image' src={NoAvatar} />
 
-                        <p className='fullscreen-info-author__name' id='name'></p>
-                        <p id='count'></p>
+                        <p className='fullscreen-info-author__name'>{video.author.name}</p>
+                        <p className='fullscreen-info-author__follow-count'>{video.author.subscribersNumbers}</p>
                         <img className='fullscreen-info-author__follow-button' src={follow}/>
                         <div className='fullscreen-info-action'>
-
                             <div className="fullscreen-info-action__el">
                                 <img className='fullscreen-info-action__image' src={like} />
                                 <p className='fullscreen-info-action__count'>{video.likes}</p>

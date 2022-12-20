@@ -5,10 +5,10 @@ const schema = new Schema({
     name: String,
     login: String,
     password: String,
-    regDate: Date,
-    avatar: String,
-    description: String,
-    subscribersNumbers: Number,
+    regDate: {type: Date, default: new Date},
+    avatar: {type: String, default: '/images/avatars/default.png'},
+    description: {type: String, default: ''},
+    subscribersNumbers: {type: Number, default: 0},
     subscribers: [
         {
             type: String,

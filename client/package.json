@@ -50,5 +50,5 @@
     "sass": "^1.56.1",
     "video.js": "^7.20.3"
   },
-  "proxy": "http://localhost:8081"
+  "proxy": "http://localhost:3001"
 }

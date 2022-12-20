@@ -1,0 +1,42 @@
+.channel-full-nav-bar {
+  width: 100%;
+  position: relative;
+  &::after {
+    content: '';
+    width: 100%;
+    top: 48px;
+    left: 0px;
+    position: absolute;
+    height: 3px;
+    background: #00000050;
+  }
+}
+
+.channel-nav-bar {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+  position: relative;
+
+
+
+  &__link {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    //border-bottom: 2px solid white;
+    position: relative;
+
+    &_active::after {
+      transition: .5s;
+      content: '';
+      width: 100%;
+      top: 45px;
+      left: 0px;
+      position: absolute;
+      height: 3px;
+      background: #fff;
+    }
+  }
+}

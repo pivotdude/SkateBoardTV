@@ -8,7 +8,9 @@ let mongoose = require('mongoose')
 router.get('/videos/:videoId',
     async function (req, res, next) {
         let videoId = req.params["videoId"]
-        let results = await Video.findOne({_id: videoId}, '-tags -_id').populate('author', '-login -password -likes -subscribe -subscribers -videos -viewed').populate('comments.from', '-login -password -likes -subscribe -subscribers -videos -viewed -regDate').then()   //.findOne({id: videoId})
+        let results = await Video.findOne({_id: videoId}, '-tags -_id')
+        await results.populate('author', '-login -password -likes -subscribe -subscribers -videos -viewed')
+        await results.populate('comments.from', '-login -password -likes -subscribe -subscribers -videos -viewed -regDate')   //.findOne({id: videoId})
         res.json(results)
     }
 )

@@ -3,17 +3,18 @@ import ProfilePhoto from './img/ProfileExmple.png'
 import Notif from './img/notificationHasArrived.svg'
 import './Profile.scss'
 import arrow from "./img/arrow.svg";
+import {Link} from "react-router-dom";
 
 const Profile = () => {
     let [toggle, setToggle] = useState(false)
     function actionHandler() {
-        setToggle(prev => !prev)
         let menu = document.querySelector('.profile-menu') as HTMLElement
-        if (toggle) {
+        if (!toggle) {
             menu.style.display = 'block'
         } else {
             menu.style.display = 'none'
         }
+        setToggle(prev => !prev)
     }
 
     return (
@@ -25,7 +26,7 @@ const Profile = () => {
                 <img alt='' className='header-profile__notification' src={Notif} />
             </div>
             <div className='profile-menu'>
-                <p className='profile-menu__link'>Profile</p>
+                <Link to={'channel/1'} className='profile-menu__link'>My channel</Link>
                 <p className='profile-menu__link'>My videos</p>
                 <p className='profile-menu__link'>Settings</p>
                 <p className='profile-menu__link'>Log out</p>

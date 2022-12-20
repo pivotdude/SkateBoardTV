@@ -1,0 +1,26 @@
+.channel-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 38px 0;
+  color: #ffffff;
+  align-items: center;
+  &-author {
+    display: flex;
+    align-items: center;
+    width: 14%;
+    justify-content: space-between;
+    &__author-image {
+
+    }
+    &__author-name {
+      font-size: 27px;
+    }
+    &__follow {
+
+    }
+  }
+
+  &__follows {
+    font-size: 20px;
+  }
+}
