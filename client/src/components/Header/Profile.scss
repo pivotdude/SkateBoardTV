@@ -32,9 +32,22 @@
   right: 90px;
   display: none;
   &__link {
+    cursor: pointer;
     text-decoration: none;
     padding: 4px 10px;
     color: #ffffff;
     font-size: 16px;
+  }
+}
+.unAuth {
+  display: flex;
+  margin-right: 10px;
+  &__link {
+    color: #ffffff;
+    text-decoration: none;
+    &_left {
+      margin-right: 40px;
+    }
+
   }
 }

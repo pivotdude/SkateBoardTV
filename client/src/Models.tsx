@@ -67,9 +67,19 @@ export interface newVideoModel {
 export interface StateModel {
     app: {
         loading: boolean,
+        fetchProfile: UserModel,
     },
     video: {
         videoById: object,
     },
-    auth: object
+    authorization: {
+        auth: {},
+        reg: {}
+    },
+}
+
+export interface authUserModel {
+    success: boolean,
+    message: string,
+    token: string
 }

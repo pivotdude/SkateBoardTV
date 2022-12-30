@@ -6,6 +6,12 @@
   background: $primary-color;
   border-radius: 10px;
   position: relative;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+
   &__input {
 
     &, &:active, &:hover, &:focus {

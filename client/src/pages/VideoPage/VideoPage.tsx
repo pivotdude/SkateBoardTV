@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useParams} from "react-router-dom";
 import './VideoPage.scss'
 import like from './img/like.svg'
@@ -22,6 +22,8 @@ const VideoPage = () => {
     const video: newVideoModel | any = useSelector((state: StateModel) => state.video.videoById)
     const loading: boolean = useSelector((state: StateModel) => state.app.loading)
 
+    const BtnDescribe = useRef<HTMLAnchorElement>(null)
+    const Describe = useRef<HTMLPreElement>(null)
     const {videoId} = useParams()
 
     useEffect(() => {
@@ -33,21 +35,23 @@ const VideoPage = () => {
         return null
     }
 
+
     function showAll() {
+        if (BtnDescribe && BtnDescribe.current) {
+            let descr = document.querySelector('.fullscreen-info__description') as HTMLElement
+            if (!toggle) {
+                descr.style.overflow = 'visible'
+                descr.style.height = 'auto'
+                BtnDescribe.current.textContent = 'Скрыть описание'
 
-        let descr = document.querySelector('.fullscreen-info__description') as HTMLElement
-        let button = document.querySelector('.fullscreen-info__description-button') as HTMLElement
-        if (!toggle) {
-            descr.style.overflow = 'visible'
-            descr.style.height = 'auto'
-            button.textContent = 'Скрыть описание'
-
-        } else {
-            descr.style.overflow = 'hidden'
-            descr.style.height = '260px'
-            button.textContent = 'Развернуть описание'
+            } else {
+                descr.style.overflow = 'hidden'
+                descr.style.height = '260px'
+                BtnDescribe.current.textContent = 'Развернуть описание'
+            }
+            setToggle(prev => !prev)
         }
-        setToggle(prev => !prev)
+
     }
 
 
@@ -88,8 +92,8 @@ const VideoPage = () => {
 
                         <img className='fullscreen-info-author__image' src={NoAvatar} />
 
-                        <p className='fullscreen-info-author__name'>{video.author.name}</p>
-                        <p className='fullscreen-info-author__follow-count'>{video.author.subscribersNumbers}</p>
+                        {/*<p className='fullscreen-info-author__name'>{video.author.name}</p>*/}
+                        {/*<p className='fullscreen-info-author__follow-count'>{video.author.subscribersNumbers}</p>*/}
                         <img className='fullscreen-info-author__follow-button' src={follow}/>
                         <div className='fullscreen-info-action'>
                             <div className="fullscreen-info-action__el">
@@ -106,8 +110,8 @@ const VideoPage = () => {
                     </div>
                     <p className='fullscreen-info__date'>{video.date}</p>
                     <p className='fullscreen-info__views'>{video.views} views</p>
-                    <pre className='fullscreen-info__description'>{video.description}</pre>
-                    <p className='fullscreen-info__description-button' onClick={showAll}>Развернуть описание</p>
+                    <pre ref={Describe} className='fullscreen-info__description'>{video.description}</pre>
+                    <a className='fullscreen-info__description-button' ref={BtnDescribe} onClick={showAll}>Развернуть описание</a>
                 </div>
             </div>
 

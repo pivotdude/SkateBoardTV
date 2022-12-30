@@ -19,6 +19,7 @@ import competitionActive from './img/CompetitionActive.svg'
 const Navigations = () => {
     const [link, setLink] = useState('');
     const location = useLocation()
+
     useEffect( () => {
         setLink(location.pathname.replace('/', ''))
     }, [location])
@@ -26,18 +27,19 @@ const Navigations = () => {
     return (
         <nav className='navigations'>
 
+
             <NavigationMenu title='MENU'>
-                <NavigationMenuEl title='Discover' to='/' image={link == '' ? discoverActive : discover} />
-                <NavigationMenuEl title='Trending' to='trending' image={link == 'trending' ? trendingActive : trending} />
-                <NavigationMenuEl title='Playlist' to='playlist' image={link == 'playlist' ? playlistActive : playlist} />
+                <NavigationMenuEl title='Discover' to='/' image={link === '' ? discoverActive : discover} />
+                <NavigationMenuEl title='Trending' to='trending' image={link === 'trending' ? trendingActive : trending} />
+                <NavigationMenuEl title='Playlist' to='playlist' image={link === 'playlist' ? playlistActive : playlist} />
             </NavigationMenu>
 
             <NavigationMenu title='CATEGORY'>
-                <NavigationMenuEl title='Tutorials' to='tutorials' image={link == 'tutorials' ? trendingActive : trending} />
-                <NavigationMenuEl title='Competition' to='competition' image={link == 'competition' ? competitionActive : competition} />
-                <NavigationMenuEl title='Review' to='review' image={link == 'review' ? competitionActive : competition} />
-                <NavigationMenuEl title='Skating' to='skating' image={link == 'skating' ? competitionActive : competition} />
-                <NavigationMenuEl title='Other' to='other' image={link == 'other' ? competitionActive : competition} />
+                <NavigationMenuEl title='Tutorials' to='tutorials' image={link === 'tutorials' ? trendingActive : trending} />
+                <NavigationMenuEl title='Competition' to='competition' image={link === 'competition' ? competitionActive : competition} />
+                <NavigationMenuEl title='Review' to='review' image={link === 'review' ? competitionActive : competition} />
+                <NavigationMenuEl title='Skating' to='skating' image={link === 'skating' ? competitionActive : competition} />
+                <NavigationMenuEl title='Other' to='other' image={link === 'other' ? competitionActive : competition} />
             </NavigationMenu>
 
             <NavigationMenu title='SUBSCRIBERS'>

@@ -11,6 +11,7 @@ interface NavigationMenuElProps {
 
 const NavigationMenuEl = (props: NavigationMenuElProps) => {
     return (
+            
         <Link to={props.to} className="navigation-menu-el">
             <img alt='' className="navigation-menu-el__button" src={props.image} />
             <p className={'navigation-menu-el__title'}>{props.title}</p>

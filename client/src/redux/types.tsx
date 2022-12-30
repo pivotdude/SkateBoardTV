@@ -6,8 +6,8 @@ export const REGISTRATION = 'AUTH/REGISTRATION'
 export const LOGOUT = 'AUTH/LOGOUT'
 
 // APPReducer
+
+export const PROFILE = 'APP/PROFILE'
 export const SHOW_LOADER = 'APP/SHOW_LOADER'
 export const HIDE_LOADER = 'APP/HIDE_LOADER'
-export const SHOW_PROFILE_MENU = 'APP/SHOW_PROFILE_MENU'
-export const HIDE_PROFILE_MENU = 'APP/HIDE_PROFILE_MENU'
 

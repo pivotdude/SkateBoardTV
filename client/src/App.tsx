@@ -20,6 +20,8 @@ import ChannelPlaylists from "./pages/Channel/ChannelPlaylists";
 import ChannelLikes from "./pages/Channel/ChannelLikes";
 import ChannelSubscribes from "./pages/Channel/ChannelSubscribes";
 import ChannelAbout from "./pages/Channel/ChannelAbout";
+import Registration from "./pages/Registration/Registration";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (
@@ -52,6 +54,10 @@ function App() {
                   <Route path="/channel/:channelId/likes" element={<ChannelLikes />} />
                   <Route path="/channel/:channelId/subscribes" element={<ChannelSubscribes />} />
                   <Route path="/channel/:channelId/about" element={<ChannelAbout />} />
+
+
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/registration" element={<Registration />} />
 
                 </Routes>
               </main>

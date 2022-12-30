@@ -1,23 +1,23 @@
-import {HIDE_LOADER, HIDE_PROFILE_MENU, SHOW_LOADER, SHOW_PROFILE_MENU} from "./types";
+import {HIDE_LOADER, PROFILE, SHOW_LOADER} from "./types";
 import {ActionModel} from "./ActionModel";
 
 const initialState = {
     loading: true,
-    profileMenu: false
+    profileMenu: false,
+    fetchProfile: {}
 }
 
 export const appReducer = (state = initialState, action: ActionModel) => {
     switch (action.type) {
+
+        case PROFILE:
+            return {...state, fetchProfile: action.payload}
 
         case SHOW_LOADER:
             return {...state, loading: true}
         case HIDE_LOADER:
             return {...state, loading: false}
 
-        case SHOW_PROFILE_MENU:
-            return {...state, profileMenu: true}
-        case HIDE_PROFILE_MENU:
-            return {...state, profileMenu: false}
 
         default: return state
     }

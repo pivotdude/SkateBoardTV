@@ -3,7 +3,7 @@ const {Schema, model} = require(`mongoose`)
 const schema = new Schema({
     _id: {type: String, unique: true},
     name: String,
-    login: String,
+    email: {type: String, unique: true},
     password: String,
     regDate: {type: Date, default: new Date},
     avatar: {type: String, default: '/images/avatars/default.png'},
