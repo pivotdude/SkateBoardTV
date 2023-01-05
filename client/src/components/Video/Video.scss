@@ -4,7 +4,6 @@
   background: $video-color;
   border-radius: 20px;
   width: 259px;
-  height: 313px;
   overflow: hidden;
   margin-top: 40px;
   margin-right: 50px;
@@ -13,11 +12,12 @@
     position: absolute;
     right: 20px;
     top: 137px;
+    width: 50px;
+
   }
 
   &-info {
     padding: 10px 20px;
-    height: 100%;
 
     &__author {
       font-weight: 400;
@@ -68,6 +68,13 @@
   }
   &__image, &-info__title {
     cursor: pointer;
+  }
+  &__image {
+    max-height: 210px;
+    width: 259px;
+    height: 170px;
+
+    object-fit: cover;
   }
 
 

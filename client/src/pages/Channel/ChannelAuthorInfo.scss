@@ -1,3 +1,7 @@
+.channel-header__cup {
+  width: 100%;
+}
+
 .channel-info {
   display: flex;
   justify-content: space-between;
@@ -7,16 +11,17 @@
   &-author {
     display: flex;
     align-items: center;
-    width: 14%;
     justify-content: space-between;
     &__author-image {
-
+      width: 50px;
+      height: 50px;
+      margin-right: 20px;
     }
     &__author-name {
       font-size: 27px;
     }
     &__follow {
-
+      margin-left: 20px;
     }
   }
 

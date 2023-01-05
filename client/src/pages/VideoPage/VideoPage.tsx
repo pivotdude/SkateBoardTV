@@ -1,12 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import './VideoPage.scss'
 import like from './img/like.svg'
 import dislike from './img/dislike.svg'
 import follow from './img/follow.svg'
-import author from './../Discover/img/author1.png'
-import {newVideoModel, StateModel, VideoModel} from "../../Models";
-import video1 from "../Discover/img/video1.png";
+import {StateModel} from "../../Models";
 import author1 from "../Discover/img/author1.png";
 import VideosList from "../../components/Video/VideosList";
 import Comment from './Cooment'
@@ -19,8 +17,11 @@ const VideoPage = () => {
     const [url, setUrl] = useState('')
     const [toggle, setToggle] = useState(false)
     const dispatch: Function  = useDispatch()
-    const video: newVideoModel | any = useSelector((state: StateModel) => state.video.videoById)
+    const video = useSelector((state: StateModel) => state.video.videoById)
     const loading: boolean = useSelector((state: StateModel) => state.app.loading)
+
+    const location = useLocation()
+    useEffect(() => {window.scrollTo(0,0)}, [location])
 
     const BtnDescribe = useRef<HTMLAnchorElement>(null)
     const Describe = useRef<HTMLPreElement>(null)
@@ -56,16 +57,16 @@ const VideoPage = () => {
 
 
 
-    const SimilarVideos: Array<VideoModel> = [
-        {_id: '1', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
-        {_id: '2', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
-        {_id: '3', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
-        {_id: '4', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
-        {_id: '5', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
-        {_id: '6', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
-        {_id: '7', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
-        {_id: '8', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
-    ]
+    // const SimilarVideos: Array<VideoModel> = [
+    //     {_id: '1', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
+    //     {_id: '2', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
+    //     {_id: '3', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
+    //     {_id: '4', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
+    //     {_id: '5', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
+    //     {_id: '6', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
+    //     {_id: '7', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
+    //     {_id: '8', title: 'Basic how to ride your skateboard comfortly', image: video1, UserImage: author1, UserName: 'Andy William', VideoInfo: '53K views  •  2 weeks ago', duration: 5},
+    // ]
 
 
 // 20.08.2020  •  2 years ago
@@ -117,7 +118,7 @@ const VideoPage = () => {
 
             <div className='similar'>
                 <p className='similar__title'>Similar</p>
-                <VideosList videos={SimilarVideos} display='flex' />
+                {/*<VideosList videos={SimilarVideos} display='flex' />*/}
             </div>
 
             <div className='comments'>

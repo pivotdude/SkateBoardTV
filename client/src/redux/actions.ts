@@ -4,7 +4,14 @@ import {
     AUTHORIZATION,
     REGISTRATION,
     GET_VIDEO_BY_ID,
-    PROFILE, LOGOUT,
+    PROFILE,
+    LOGOUT,
+    AUTHOR_INFO,
+    CHANNEL_ABOUT,
+    CHANNEL_LIKES,
+    CHANNEL_VIDEOS,
+    CHANNEL_PLAYLIST,
+    CHANNEL_SUBSCRIPTIONS,
 } from './types'
 
 type methods = 'GET' | 'POST'
@@ -76,6 +83,7 @@ interface regArgs {
 
 }
 
+// APP
 export function authAction(data: authArgs) {
     return fetchData('login', AUTHORIZATION, 'POST', data)
 }
@@ -87,3 +95,26 @@ export function logOutAction():object {
     localStorage.setItem('token', '')
     return {type: LOGOUT}
 }
+
+
+// Channel
+export function fetchAuthorInfo(authorId: string | undefined): any {
+    return fetchData(`channel/${authorId}`, AUTHOR_INFO)
+}
+export function fetchChannelVideos(authorId: string | undefined): any {
+    return fetchData(`channel/${authorId}/videos`, CHANNEL_VIDEOS)
+}
+export function fetchChannelPlaylists(authorId: string | undefined): any {
+    return fetchData(`channel/${authorId}/playlists`, CHANNEL_PLAYLIST)
+}
+export function fetchChannelLikes(authorId: string | undefined): any {
+    return fetchData(`channel/${authorId}/likes`, CHANNEL_LIKES)
+}
+export function fetchChannelSubscribe(authorId: string | undefined): any {
+    return fetchData(`channel/${authorId}/subscriptions`, CHANNEL_SUBSCRIPTIONS)
+}
+export function fetchChannelAbout(authorId: string | undefined): any {
+    return fetchData(`channel/${authorId}/about`, CHANNEL_ABOUT)
+}
+
+

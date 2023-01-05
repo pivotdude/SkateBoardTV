@@ -18,10 +18,11 @@ import Channel from "./pages/Channel/Channel";
 import ChannelVideos from "./pages/Channel/ChannelVideos";
 import ChannelPlaylists from "./pages/Channel/ChannelPlaylists";
 import ChannelLikes from "./pages/Channel/ChannelLikes";
-import ChannelSubscribes from "./pages/Channel/ChannelSubscribes";
+import ChannelSubscriptions from "./pages/Channel/ChannelSubscriptions";
 import ChannelAbout from "./pages/Channel/ChannelAbout";
 import Registration from "./pages/Registration/Registration";
 import Login from "./pages/Login/Login";
+import NotFound from "./pages/404/NotFound";
 
 function App() {
   return (
@@ -52,13 +53,14 @@ function App() {
                   <Route path="/channel/:channelId/videos" element={<ChannelVideos />} />
                   <Route path="/channel/:channelId/playlists" element={<ChannelPlaylists />} />
                   <Route path="/channel/:channelId/likes" element={<ChannelLikes />} />
-                  <Route path="/channel/:channelId/subscribes" element={<ChannelSubscribes />} />
+                  <Route path="/channel/:channelId/subscribes" element={<ChannelSubscriptions />} />
                   <Route path="/channel/:channelId/about" element={<ChannelAbout />} />
 
 
                   <Route path="/login" element={<Login />} />
                   <Route path="/registration" element={<Registration />} />
 
+                  <Route path="/*" element={<div className='container'> <NotFound /> </div>} />
                 </Routes>
               </main>
 

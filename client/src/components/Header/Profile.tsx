@@ -1,5 +1,4 @@
 import React, {useEffect, useRef, useState} from 'react';
-import ProfilePhoto from './img/ProfileExmple.png'
 import Notif from './img/notificationHasArrived.svg'
 import './Profile.scss'
 import arrow from "./img/arrow.svg";
@@ -60,7 +59,7 @@ const Profile = () => {
                 <img alt='' className='header-profile__notification' src={Notif} />
             </div>
             <div className='profile-menu' ref={profileMenu}>
-                <Link to={'channel/1/'} className='profile-menu__link'>My channel</Link>
+                <Link to={`channel/${profile._id}/`} className='profile-menu__link'>My channel</Link>
                 <p className='profile-menu__link'>My videos</p>
                 <p className='profile-menu__link'>Settings</p>
                 <p className='profile-menu__link' onClick={logoutHandler}>Log out</p>

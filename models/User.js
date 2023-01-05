@@ -4,39 +4,53 @@ const schema = new Schema({
     _id: {type: String, unique: true},
     name: String,
     email: {type: String, unique: true},
+
     password: String,
     regDate: {type: Date, default: new Date},
-    avatar: {type: String, default: '/images/avatars/default.png'},
+    avatar: {type: String, default: '/images/default/avatar.png'},
+    channelHeader: {type: String, default: '/images/default/channelHeader.png'},
     description: {type: String, default: ''},
     subscribersNumbers: {type: Number, default: 0},
     subscribers: [
         {
             type: String,
-            ref: 'User'
+            ref: 'User',
+            unique: true
         },
     ],
     videos: [
         {
             type: String,
-            ref: 'Video'
+            ref: 'Video',
+            unique: true
         },
     ],
-    subscribe: [
+    playlists: [
         {
             type: String,
-            ref: 'User'
+            ref: 'Playlist',
+            unique: true
+        },
+    ],
+    subscriptions: [
+        {
+            type: String,
+            ref: 'User',
+            unique: true
         },
     ],
     likes: [
         {
             type: String,
-            ref: 'Video'
+            ref: 'Video',
+            unique: true
         }
     ],
     viewed: [
         {
             type: String,
-            ref: 'Video'
+            ref: 'Video',
+            unique: true
         }
     ]
 })

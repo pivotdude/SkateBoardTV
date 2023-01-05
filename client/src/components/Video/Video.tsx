@@ -1,25 +1,32 @@
 import React, {useEffect} from 'react';
 import './Video.scss'
-import {VideoModel} from "../../Models";
+import {PreviewVideoModel} from "../../Models";
 import {Link, useLocation} from "react-router-dom";
+import toNormalDate from './../../utils/dateToNormal'
 
 interface VideoProps {
-    video: VideoModel,
+    video: PreviewVideoModel,
     playlist?: boolean
 }
 
+
 const Video = (props: VideoProps) => {
-    let location = useLocation()
-    useEffect(() => {window.scrollTo(0,0)}, [location])
+
+    // const date =
+
+
+    // let location = useLocation()
+    // useEffect(() => {window.scrollTo(0,0)}, [location])
     return (
         <div className='video'>
-            <img className='video__image' src={props.video.image}/>
-            <img className='video__author-image' src={props.video.UserImage} />
+            <img className='video__image' src={props.video.preview}/>
+            <img className='video__author-image' src={props.video.author.avatar} />
             <div className='video-info'>
-                <p className='video-info__author'>{props.video.UserName}</p>
+                <p className='video-info__author'>{props.video.author.name}</p>
                 <Link to={`/${props.playlist ? 'playlist' : 'video'}/${props.video._id}`} className='video-info__title'>{props.video.title}</Link>
-                {!props. playlist &&<p className='video-info__statistic'>{props.video.VideoInfo}</p>}
-                {props.playlist && <p className='video-info__videos-count'>32 videos</p> }
+                {/*{!props. playlist &&<p className='video-info__statistic'>{props.video.duration}</p>}*/}
+                {/*{props.playlist && <p className='video-info__videos-count'>32 videos</p> }*/}
+                <p className='video-info__videos-count'>{props.video.views} views  •  {toNormalDate(props.video.date)}</p>
                 <p className='video-info__duration'>{props.video.duration} min</p>
             </div>
         </div>

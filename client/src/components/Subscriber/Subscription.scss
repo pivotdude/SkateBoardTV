@@ -1,0 +1,28 @@
+.subscriptions-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.subscription {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+  padding: 0 20px;
+
+
+  &__image {
+    width: 50px;
+
+  }
+  &__name {
+    margin-left: 20px;
+    color: #ffffff;
+    text-decoration: none;
+
+  }
+  &__subscribers-numbers {
+    margin-left: 20px;
+  }
+}

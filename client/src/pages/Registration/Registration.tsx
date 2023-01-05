@@ -3,7 +3,7 @@ import Form from "../../components/Form/Form";
 import FormInput from "../../components/Form/FormInput";
 import useInput from "../../hooks/useInput";
 import {regAction} from "../../redux/actions";
-import {newVideoModel, StateModel} from "../../Models";
+import {StateModel} from "../../Models";
 import {useSelector} from "react-redux";
 const Registration = () => {
     const nameInput = useInput()

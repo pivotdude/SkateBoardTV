@@ -1,3 +1,5 @@
+import video from "./components/Video/Video";
+
 export interface BannerModel {
     _id: string,
     size: 'large' | 'small',
@@ -9,53 +11,92 @@ export interface BannerModel {
     duration: number,
 }
 
-export interface VideoModel {
-    _id?: string,
+
+
+
+
+interface authorModel {
+    avatar: string,
+    name: string,
+}
+
+export interface PreviewVideoModel {
+    _id: string,
+    author: authorModel,
+    date: string,
+    duration: number,
+    preview: string,
     title: string,
-    image: any,
-    UserImage: string | object,
-    UserName: string,
-    VideoInfo: string,
+    views: number
+}
+
+interface AuthorInfoModel {
+    name: string,
+    avatar: string,
+    channelHeader: string,
+    subscribersNumbers: number
+}
+
+interface channelAboutModel {
+    description: string,
+    regDate: Date
+}
+
+export interface VideoChannelModel {
+    _id: string,
+    date: string,
+    preview: string,
+    title: string,
+    views: number
     duration: number
 }
-
-interface UserModel {
+export interface PlaylistChannelModel {
     _id: string,
-    name: string,
-    login: string,
-    password: string,
-    regDate: string,
-    avatar: string,
-    subscribersNumbers: 1,
-    description: string,
-    subscribers: Array<string>,
+    preview: string,
+    title: string,
     videos: Array<string>,
-    subscribe: Array<string>,
-    likes: Array<string>,
-    viewed: Array<string>,
+    count: number
 }
-
-interface UserModelTiny {
+export interface SubscribeChannelModel {
     _id: string,
     name: string,
     avatar: string,
-    subscribersNumbers: 1,
+    subscribersNumbers: number
 }
 
-export interface newVideoModel {
+
+
+interface channelSubscribeModel {
+    subscriptions: Array<SubscribeChannelModel> | null
+}
+interface channelVideosModel {
+    videos: Array<VideoChannelModel> | null
+}
+interface channelPlaylistsModel {
+    playlists: Array<PlaylistChannelModel> | null
+}
+
+interface fullAuthorModel {
+    _id: string,
+    name: string,
+    avatar: string,
+    subscribersNumbers: number,
+}
+
+interface fullVideoModel {
     _id?: string,
     title: string,
     preview: string,
     likes: number,
     dislikes: number
-    author: UserModelTiny
+    author: fullAuthorModel
     date: string
     views: number
     description: string
     tags?: Array<string>
-    comments: [
+    comments?: [
         {
-            from: UserModelTiny,
+            from: fullAuthorModel,
             content: string,
             date: string,
             like: number,
@@ -64,18 +105,31 @@ export interface newVideoModel {
     ]
 }
 
+
 export interface StateModel {
     app: {
         loading: boolean,
-        fetchProfile: UserModel,
+        fetchProfile: {
+            _id: string,
+            name: string,
+            avatar: string,
+        },
     },
     video: {
-        videoById: object,
+        videoById: fullVideoModel,
     },
     authorization: {
         auth: {},
         reg: {}
     },
+    channel: {
+        authorInfo: AuthorInfoModel,
+        channelVideos: channelVideosModel,
+        channelPlaylist: channelPlaylistsModel,
+        channelLikes: Array<PreviewVideoModel> | null,
+        channelSubscriptions: channelSubscribeModel,
+        channelAbout: channelAboutModel
+    }
 }
 
 export interface authUserModel {
@@ -83,3 +137,4 @@ export interface authUserModel {
     message: string,
     token: string
 }
+

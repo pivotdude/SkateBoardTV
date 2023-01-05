@@ -2,7 +2,7 @@ import {HIDE_LOADER, PROFILE, SHOW_LOADER} from "./types";
 import {ActionModel} from "./ActionModel";
 
 const initialState = {
-    loading: true,
+    loading: false,
     profileMenu: false,
     fetchProfile: {}
 }

@@ -8,28 +8,65 @@ const bcrypt = require('bcrypt');
 const {check, validationResult} = require('express-validator')
 const jwt = require('jsonwebtoken')
 
-router.all('/profile',
+router.get('/profile',
     async function (req, res, next) {
         // res.send('|')
 
-        if (req.method == 'OPTIONS') {
-            return res.status(200).send()
-        }
+        // if (req.method == 'OPTIONS') {
+        //     return res.status(200).send()
+        // }
 
 
         if (!req.user) {
             return res.status(401).json({message: 'UnAuthorization'})
         }
 
-        const results = await User.findOne({_id: req.user.userId}, 'avatar name -_id')
+        const results = await User.findOne({_id: req.user.userId}, 'avatar name')
         console.log(req.user)
         res.json(results)
     }
 )
 
+function creatRouteUserChannelDataById(link, values, valuesInPopulate = '') {
+    router.get(`/channel/:channelId/${link}`, async function (req, res, next) {
+        const id = req.params['channelId']
+        let result
 
-router.post(
-    '/registration',
+        if (valuesInPopulate) {
+            result = await User.findOne({_id: id}, '-_id ' + values).populate(values, valuesInPopulate).limit(20).skip(0)
+        } else {
+            result = await User.findOne({_id: id}, '-_id ' + values).limit(20).skip(0)
+        }
+
+        res.status(200).json(result)
+    })
+}
+
+
+
+creatRouteUserChannelDataById('', 'avatar subscribersNumbers name channelHeader')
+creatRouteUserChannelDataById('videos', 'videos', 'date preview title views duration')
+creatRouteUserChannelDataById('playlists', 'playlists', '-author')
+// creatRouteUserChannelDataById('likes', 'likes', 'date preview title views duration')
+creatRouteUserChannelDataById('subscriptions', 'subscriptions', 'name avatar subscribersNumbers')
+creatRouteUserChannelDataById('about', 'description regDate')
+
+
+router.get(`/channel/:channelId/likes`, async function (req, res, next) {
+    const id = req.params['channelId']
+
+    const array = await User.findOne({_id: id}, '-_id likes') //.populate('likes', 'author date preview title views duration').populate('likes.author', '-_id').limit(20).skip(0)
+    const result = []
+    for (i of array.likes) {
+        result.push(await Video.findOne({_id: i}, 'title preview duration date author views').populate('author', 'name avatar -_id'))
+    }
+
+    res.status(200).json(result)
+})
+
+
+
+router.post('/registration',
     [
         check('email', 'Некорректный email').isEmail(),
         check('password', "Пароль должен состоять минимум из 6 символов").isLength({min: 6}),
@@ -106,8 +143,9 @@ router.get('/videos/:videoId',
     async function (req, res, next) {
         let videoId = req.params["videoId"]
         let results = await Video.findOne({_id: videoId}, '-tags -_id')
-        await results.populate('author', '-login -password -likes -subscribe -subscribers -videos -viewed')
-        await results.populate('comments.from', '-login -password -likes -subscribe -subscribers -videos -viewed -regDate')   //.findOne({id: videoId})
+            .populate('author', 'name avatar subscribersNumbers -_id')
+            // .populate('comments.from', '-login -password -likes -subscribe -subscribers -videos -viewed -regDate')
+        console.log(results)
         res.json(results)
     }
 )

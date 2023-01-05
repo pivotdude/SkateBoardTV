@@ -13,11 +13,19 @@ start()
 app.use(function (req, res, next) {
   res.setHeader('Accept', 'application/json');
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Authorization, content-type');
+  res.setHeader('Access-Control-Allow-Headers', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
+
+app.use(function(err, req, res, next) {
+  console.log(req.method)
+  if (req.method == 'OPTION') {
+    res.status(200)
+  }
+  next()
+})
 
 AuthParse()
 var apiRouter = require('./routes/api');
@@ -53,6 +61,7 @@ app.use(function(err, req, res, next) {
 
 function AuthParse() {
   app.use((req, res, next) => {
+
     if (req.headers['authorization']) {
 
       // console.log(res.headers['Authorization'].replace('Bearer ', ''))
@@ -68,10 +77,10 @@ function AuthParse() {
           // .replace('_', '/')
           .replace(/\//g, '_')
 
-      console.log(`'${signature}' == '${tokenParts[2]}'`)
+      // console.log(`'${signature}' == '${tokenParts[2]}'`)
 
       if (signature === tokenParts[2]) {
-        console.log('=')
+        // console.log('=')
         req.user = JSON.parse(Buffer.from(tokenParts[1], 'base64').toString('utf8'))
       }
 
