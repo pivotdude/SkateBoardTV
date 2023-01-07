@@ -12,6 +12,15 @@ import {
     CHANNEL_VIDEOS,
     CHANNEL_PLAYLIST,
     CHANNEL_SUBSCRIPTIONS,
+    GET_PLAYLIST_BY_ID,
+    VIDEOS_LIST,
+    DISCOVER,
+    TRENDING,
+    PLAYLIST,
+    COMPETITION,
+    REVIEW,
+    SKATING,
+    OTHER, SUBSCRIPTIONS,
 } from './types'
 
 type methods = 'GET' | 'POST'
@@ -55,6 +64,10 @@ export function fetchVideoById(videoId: string | null | undefined):object {
     return fetchData(`videos/${videoId}`, GET_VIDEO_BY_ID)
 }
 
+export function fetchPlaylistById(playlistId: any):any {
+    return fetchData(`playlist/${playlistId}`, GET_PLAYLIST_BY_ID)
+}
+
 // APPReducer
 
 export function fetchProfileInfo():object {
@@ -77,6 +90,7 @@ interface authArgs {
 }
 interface regArgs {
     name: string,
+    login: string,
     email: string,
     password: string,
     repeatPassword:string,
@@ -118,3 +132,34 @@ export function fetchChannelAbout(authorId: string | undefined): any {
 }
 
 
+
+
+export function fetchDiscover () {
+    return fetchData(`discover`, DISCOVER)
+}
+export function fetchTrending () {
+    return fetchData(`trending`, TRENDING)
+}
+export function fetchPlaylist () {
+    return fetchData(`competition`, PLAYLIST)
+}
+export function fetchTutorials () {
+    return fetchData(`tutorials`, COMPETITION)
+}
+export function fetchCompetition () {
+    return fetchData(`competition`, COMPETITION)
+}
+export function fetchReview () {
+    return fetchData(`review`, REVIEW)
+}
+export function fetchSkating () {
+    return fetchData(`skating`, SKATING)
+}
+export function fetchOther () {
+    return fetchData(`other`, OTHER)
+}
+
+
+export function fetchSubscriptions():any {
+    return fetchData(`subscriptions`, SUBSCRIPTIONS)
+}

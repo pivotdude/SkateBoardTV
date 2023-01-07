@@ -17,9 +17,12 @@
   }
 
   &-info {
+    display: flex;
+    flex-direction: column;
     padding: 10px 20px;
 
     &__author {
+      text-decoration: none ;
       font-weight: 400;
       font-size: 13px;
       color: #B7B9D2;

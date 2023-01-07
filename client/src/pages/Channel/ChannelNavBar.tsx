@@ -15,6 +15,8 @@ const ChannelNavBar = () => {
         setLink(location.pathname.replace(/channel\/[a-z0-9]{1,}\//, '').replace('/', ''))
     }, [location])
 
+    console.log(link)
+
 
     const authorInfo = useSelector((state: StateModel) => state.channel.authorInfo)
 

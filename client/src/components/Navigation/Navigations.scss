@@ -3,3 +3,8 @@
   //width: 8%;
   width: 127px;
 }
+@media (max-width: 1400px) {
+  .navigations {
+    display: none;
+  }
+}

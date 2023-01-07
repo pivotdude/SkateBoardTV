@@ -27,6 +27,18 @@ router.get('/profile',
     }
 )
 
+router.get('/subscriptions',
+    async function (req, res, next) {
+        if (!req.user) {
+            return res.status(401).json({message: 'UnAuthorization'})
+        }
+
+        const results = await User.findOne({_id: req.user.userId}, 'subscriptions -_id').populate('subscriptions', 'avatar name')
+        console.log(req.user)
+        res.json(results)
+    }
+)
+
 function creatRouteUserChannelDataById(link, values, valuesInPopulate = '') {
     router.get(`/channel/:channelId/${link}`, async function (req, res, next) {
         const id = req.params['channelId']
@@ -42,8 +54,6 @@ function creatRouteUserChannelDataById(link, values, valuesInPopulate = '') {
     })
 }
 
-
-
 creatRouteUserChannelDataById('', 'avatar subscribersNumbers name channelHeader')
 creatRouteUserChannelDataById('videos', 'videos', 'date preview title views duration')
 creatRouteUserChannelDataById('playlists', 'playlists', '-author')
@@ -55,7 +65,7 @@ creatRouteUserChannelDataById('about', 'description regDate')
 router.get(`/channel/:channelId/likes`, async function (req, res, next) {
     const id = req.params['channelId']
 
-    const array = await User.findOne({_id: id}, '-_id likes') //.populate('likes', 'author date preview title views duration').populate('likes.author', '-_id').limit(20).skip(0)
+    const array = await User.findOne({_id: id}, '-_id likes').limit(20).skip(0)
     const result = []
     for (i of array.likes) {
         result.push(await Video.findOne({_id: i}, 'title preview duration date author views').populate('author', 'name avatar -_id'))
@@ -65,11 +75,30 @@ router.get(`/channel/:channelId/likes`, async function (req, res, next) {
 })
 
 
+router.get(`/playlist/:playlistId`, async function (req, res, next) {
+    const id = req.params['playlistId']
+    console.log(id)
+    const array = await Playlist.findOne({_id: id}, '-_id').populate('author', 'name avatar -_id').populate('videos', 'date preview title views duration')
+
+    console.log(array)
+
+    let result = []
+    for (i of array.videos) {
+        result.push(await Video.findOne({_id: i}, 'title preview duration date author views').populate('author', 'name avatar').limit(20).skip(0))
+    }
+    // result = Object.assign(array, result)
+
+    console.log(result)
+    res.status(200).json(result)
+})
+
+
 
 router.post('/registration',
     [
         check('email', 'Некорректный email').isEmail(),
         check('password', "Пароль должен состоять минимум из 6 символов").isLength({min: 6}),
+        check('login', "Логин должен существовать").exists(),
         check('name', "Никнейм должен состоять минимум из 4 букв").isLength({min: 4}),
         check('repeatPassword', "Пароли должны совпадать").custom((value, { req }) => value === req.body.password),
     ],
@@ -84,23 +113,29 @@ router.post('/registration',
                 })
             }
 
-            const {email, password, name} = req.body
+            const {email, password, name, login} = req.body
 
 
             const candidate = await User.findOne({email: email})
-            console.log(candidate)
             if (candidate) {
                 return res.status(400).json({success: false, message: 'Пользователь на эту почту уже зарегестрирован'})
             }
 
-            const id = Math.random().toString(16).slice(2)
+            const candidateE = await User.findOne({_id: login})
+            if (candidateE) {
+                return res.status(400).json({success: false, message: 'Пользователь на этот логин уже зарегестрирован'})
+            }
+
+
+            // const id = Math.random().toString(16).slice(2)
             const hasedPassword = await bcrypt.hash(password, 12)
-            const user = new User({_id: id, email, password: hasedPassword, name}) // В место массива в последствии передавать value из localstorage
+            const user = new User({_id: login, email, password: hasedPassword, name}) // В место массива в последствии передавать value из localstorage
             await user.save()
 
             res.status(201).json({success: true, message: "Пользователь создан"})
 
         } catch (e) {
+            console.log(e)
             res.status(500).json({"message": `${e}`})
         }
     })
@@ -152,7 +187,7 @@ router.get('/videos/:videoId',
 
 router.get('/discover',
     async function (req, res, next) {
-        let results = await Video.find({}).sort({views: -1}).limit(20)
+        let results = await Video.find({}).populate('author', 'name avatar').sort({views: -1}).limit(20)
         res.json(results)
     }
 )
@@ -186,7 +221,7 @@ router.get('/playlist',
 function createCategoryRoute(link, array) {
     router.get(link,
         async function (req, res) {
-            let results = await Video.find({ tags: {$in: array}})
+            let results = await Video.find({ tags: {$in: array}}).populate('author', 'name avatar')
                 .sort({views: -1})
                 .limit(20)
             res.json(results)

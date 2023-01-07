@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-  padding-top: 35px;
+  padding-top: 50px;
   padding-left: 85px;
   margin-top: 20px;
   width: 100%;
@@ -26,5 +26,11 @@ body {
   }
   &_discover {
     width: 87%;
+  }
+}
+@media (max-width: 1400px) {
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }

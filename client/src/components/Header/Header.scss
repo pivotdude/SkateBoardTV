@@ -18,3 +18,13 @@
     margin-left: 20px;
   }
 }
+
+@media (max-width: 550px) {
+  .header {
+    height: 40px;
+    &__title {
+      font-weight: 500;
+      font-size: 14px;
+    }
+  }
+}

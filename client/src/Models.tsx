@@ -16,6 +16,7 @@ export interface BannerModel {
 
 
 interface authorModel {
+    _id?: string,
     avatar: string,
     name: string,
 }
@@ -55,7 +56,7 @@ export interface PlaylistChannelModel {
     preview: string,
     title: string,
     videos: Array<string>,
-    count: number
+    count?: number
 }
 export interface SubscribeChannelModel {
     _id: string,
@@ -66,15 +67,6 @@ export interface SubscribeChannelModel {
 
 
 
-interface channelSubscribeModel {
-    subscriptions: Array<SubscribeChannelModel> | null
-}
-interface channelVideosModel {
-    videos: Array<VideoChannelModel> | null
-}
-interface channelPlaylistsModel {
-    playlists: Array<PlaylistChannelModel> | null
-}
 
 interface fullAuthorModel {
     _id: string,
@@ -114,9 +106,21 @@ export interface StateModel {
             name: string,
             avatar: string,
         },
+        subscriptions: {subscriptions: Array<SubscribeChannelModel>}
     },
     video: {
         videoById: fullVideoModel,
+        playlistById: Array<PreviewVideoModel>,
+        videosList: Array<PreviewVideoModel>,
+
+        trendingVideos: Array<PreviewVideoModel>,
+        discoverVideos: Array<PreviewVideoModel>,
+        // playlistVideos: Array<PreviewVideoModel>,
+        tutorialVideos: Array<PreviewVideoModel>,
+        competitionVideos: Array<PreviewVideoModel>,
+        reviewVideos: Array<PreviewVideoModel>,
+        skatingVideos: Array<PreviewVideoModel>,
+        otherVideos: Array<PreviewVideoModel>,
     },
     authorization: {
         auth: {},
@@ -124,10 +128,10 @@ export interface StateModel {
     },
     channel: {
         authorInfo: AuthorInfoModel,
-        channelVideos: channelVideosModel,
-        channelPlaylist: channelPlaylistsModel,
+        channelVideos: {videos: Array<VideoChannelModel> | null},
+        channelPlaylist: {playlists: Array<PlaylistChannelModel> | null},
         channelLikes: Array<PreviewVideoModel> | null,
-        channelSubscriptions: channelSubscribeModel,
+        channelSubscriptions: {subscriptions: Array<SubscribeChannelModel> | null},
         channelAbout: channelAboutModel
     }
 }

@@ -15,6 +15,10 @@ import discoverActive from './img/DiscoverActive.svg'
 import trendingActive from './img/TrendingActive.svg'
 import playlistActive from './img/PlaylistActive.svg'
 import competitionActive from './img/CompetitionActive.svg'
+import SubscriptionsList from "./SubscriptionsList";
+import {useDispatch, useSelector} from "react-redux";
+import {StateModel} from "../../Models";
+import {fetchSubscriptions} from "../../redux/actions";
 
 const Navigations = () => {
     const [link, setLink] = useState('');
@@ -23,6 +27,16 @@ const Navigations = () => {
     useEffect( () => {
         setLink(location.pathname.replace('/', ''))
     }, [location])
+
+    const dispatch = useDispatch()
+    const subscriptions = useSelector((state: StateModel) => state.app.subscriptions)
+
+    useEffect(() => {
+        dispatch(fetchSubscriptions())
+    }, [])
+
+    console.log(subscriptions.subscriptions)
+
 
     return (
         <nav className='navigations'>
@@ -34,16 +48,15 @@ const Navigations = () => {
                 <NavigationMenuEl title='Playlist' to='playlist' image={link === 'playlist' ? playlistActive : playlist} />
             </NavigationMenu>
 
-            <NavigationMenu title='CATEGORY'>
+            <NavigationMenu title='TAGS CATEGORY'>
                 <NavigationMenuEl title='Tutorials' to='tutorials' image={link === 'tutorials' ? trendingActive : trending} />
                 <NavigationMenuEl title='Competition' to='competition' image={link === 'competition' ? competitionActive : competition} />
                 <NavigationMenuEl title='Review' to='review' image={link === 'review' ? competitionActive : competition} />
                 <NavigationMenuEl title='Skating' to='skating' image={link === 'skating' ? competitionActive : competition} />
-                <NavigationMenuEl title='Other' to='other' image={link === 'other' ? competitionActive : competition} />
             </NavigationMenu>
 
-            <NavigationMenu title='SUBSCRIBERS'>
-
+            <NavigationMenu title='SUBSCRIPTIONS'>
+                {/*{subscriptions && <SubscriptionsList subscriptions={subscriptions.subscriptions}  />}*/}
             </NavigationMenu>
 
 

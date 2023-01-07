@@ -18,10 +18,9 @@ const ChannelLikes = () => {
         dispatch(fetchChannelLikes(channelId))
     }, [])
 
-    // if (channelLikes && channelLikes.length == 0) {
-    //     channelLikes = null
-    // }
-
+    if (channelLikes && channelLikes.length == 0) {
+        channelLikes = null
+    }
 
     return (
         <div className='container'>

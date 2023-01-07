@@ -14,6 +14,8 @@ const Video = (props: VideoProps) => {
 
     // const date =
 
+    console.log(props.video.author._id)
+
 
     // let location = useLocation()
     // useEffect(() => {window.scrollTo(0,0)}, [location])
@@ -22,7 +24,7 @@ const Video = (props: VideoProps) => {
             <img className='video__image' src={props.video.preview}/>
             <img className='video__author-image' src={props.video.author.avatar} />
             <div className='video-info'>
-                <p className='video-info__author'>{props.video.author.name}</p>
+                <Link to={`/channel/${props.video.author._id}`} className='video-info__author'>{props.video.author.name}</Link>
                 <Link to={`/${props.playlist ? 'playlist' : 'video'}/${props.video._id}`} className='video-info__title'>{props.video.title}</Link>
                 {/*{!props. playlist &&<p className='video-info__statistic'>{props.video.duration}</p>}*/}
                 {/*{props.playlist && <p className='video-info__videos-count'>32 videos</p> }*/}

@@ -12,8 +12,6 @@ import PlaylistVideo from "./pages/PlaylistVideo/PlaylistVideo";
 
 import VideoPage from "./pages/VideoPage/VideoPage";
 
-import CategoriesPage from "./pages/Categories/CategoriesPage";
-
 import Channel from "./pages/Channel/Channel";
 import ChannelVideos from "./pages/Channel/ChannelVideos";
 import ChannelPlaylists from "./pages/Channel/ChannelPlaylists";
@@ -23,6 +21,11 @@ import ChannelAbout from "./pages/Channel/ChannelAbout";
 import Registration from "./pages/Registration/Registration";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/404/NotFound";
+import Review from "./pages/Review/Review";
+import Skating from "./pages/Skating/Skating";
+import Other from "./pages/Other/Other";
+import Competition from "./pages/Competition/Competition";
+import Tutorials from "./pages/Tutorials/Tutorials";
 
 function App() {
   return (
@@ -43,11 +46,10 @@ function App() {
                   <Route path="/playlist/:playlistId" element={<PlaylistVideo />} />
 
 
-                  <Route path="/tutorials" element={<CategoriesPage title='Tutorials' />} />
-                  <Route path="/competition" element={<CategoriesPage title='Competition' />} />
-                  <Route path="/review" element={<CategoriesPage title='Review' />} />
-                  <Route path="/skating" element={<CategoriesPage title='Skating' />} />
-                  <Route path="/other" element={<CategoriesPage title='Other' />} />
+                  <Route path="/tutorials" element={<Tutorials />} />
+                  <Route path="/competition" element={<Competition />} />
+                  <Route path="/review" element={<Review />} />
+                  <Route path="/skating" element={<Skating  />} />
 
                   <Route path="/channel/:channelId/" element={<Channel />} />
                   <Route path="/channel/:channelId/videos" element={<ChannelVideos />} />

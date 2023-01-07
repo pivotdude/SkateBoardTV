@@ -1,6 +1,7 @@
 @import "./../../Constants.scss";
 .search {
-  width: 625px;
+  //width: 625px;
+  width: 30%;
   height: 40px;
   //margin-left: 500px;
   background: $primary-color;
@@ -33,5 +34,10 @@
     width: 16px;
     right: 20px;
     top: 12px;
+  }
+}
+@media (max-width: 710px) {
+  .search {
+    display: none;
   }
 }

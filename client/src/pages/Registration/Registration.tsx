@@ -8,6 +8,7 @@ import {useSelector} from "react-redux";
 const Registration = () => {
     const nameInput = useInput()
     const emailInput = useInput()
+    const loginInput = useInput()
     const passwordInput = useInput()
     const repeatPasswordInput = useInput()
 
@@ -20,12 +21,14 @@ const Registration = () => {
         <Form header='Registration form' callback={
             regAction({
                 name: nameInput.value,
+                login: loginInput.value,
                 email: emailInput.value,
                 password: passwordInput.value,
                 repeatPassword: repeatPasswordInput.value
             })
         }>
             <FormInput placeholder="Your nickname" type="text" name="name" {...nameInput} />
+            <FormInput placeholder="Your login" type="text" name="login" {...loginInput} />
             <FormInput placeholder="Your email" type="email" name="email" {...emailInput}/>
             <FormInput placeholder="Your password" type="password" name="password" {...passwordInput}/>
             <FormInput placeholder="Repeat password" type="password" name="repeatPassword" {...repeatPasswordInput}/>
