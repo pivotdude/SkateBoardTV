@@ -5,7 +5,7 @@ import arrow from "./img/arrow.svg";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {StateModel} from "../../Models";
-import {fetchProfileInfo, logOutAction} from "../../redux/actions";
+import {fetchProfileInfo, fetchSubscriptions, logOutAction, rerender} from "../../redux/actions";
 
 const Profile = () => {
     let [toggle, setToggle] = useState(false)
@@ -30,6 +30,7 @@ const Profile = () => {
         // if login
         setTimeout(() => {
             dispatch(fetchProfileInfo())
+            dispatch(fetchSubscriptions())
         }, 100)
     }, [authUser])
 

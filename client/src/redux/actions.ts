@@ -13,14 +13,13 @@ import {
     CHANNEL_PLAYLIST,
     CHANNEL_SUBSCRIPTIONS,
     GET_PLAYLIST_BY_ID,
-    VIDEOS_LIST,
     DISCOVER,
     TRENDING,
     PLAYLIST,
     COMPETITION,
     REVIEW,
     SKATING,
-    OTHER, SUBSCRIPTIONS,
+    OTHER, SUBSCRIPTIONS, SHOW_MODAL, HIDE_MODAL,
 } from './types'
 
 type methods = 'GET' | 'POST'
@@ -159,7 +158,23 @@ export function fetchOther () {
     return fetchData(`other`, OTHER)
 }
 
-
 export function fetchSubscriptions():any {
     return fetchData(`subscriptions`, SUBSCRIPTIONS)
+}
+
+
+
+// MODAL
+export function showModal(text: string) {
+    return {type: SHOW_MODAL, payload: text}
+}
+export function hideModal() {
+    return {type: HIDE_MODAL, payload: ''}
+}
+
+export function rerender() {
+    return async (dispatch: Function) => {
+        dispatch(showLoader())
+        dispatch(hideLoader())
+    }
 }

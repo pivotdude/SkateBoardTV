@@ -1,11 +1,15 @@
-import {HIDE_LOADER, PROFILE, SHOW_LOADER, SUBSCRIPTIONS} from "./types";
+import {HIDE_LOADER, HIDE_MODAL, PROFILE, RERENDER, SHOW_LOADER, SHOW_MODAL, SUBSCRIPTIONS} from "./types";
 import {ActionModel} from "./ActionModel";
 
 const initialState = {
     loading: false,
     profileMenu: false,
     fetchProfile: {},
-    subscriptions: {}
+    subscriptions: {},
+    modal: {
+        show: false,
+        message: ''
+    }
 }
 
 export const appReducer = (state = initialState, action: ActionModel) => {
@@ -21,6 +25,21 @@ export const appReducer = (state = initialState, action: ActionModel) => {
             return {...state, loading: true}
         case HIDE_LOADER:
             return {...state, loading: false}
+
+        case SHOW_MODAL:
+            return {...state, modal: {
+                show: true, message: action.payload
+                }
+            }
+
+        case HIDE_MODAL:
+            return {...state, modal: {
+                    show: false, message: action.payload
+                }
+            }
+
+        case RERENDER:
+            return {...state}
 
 
         default: return state

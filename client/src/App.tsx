@@ -26,8 +26,14 @@ import Skating from "./pages/Skating/Skating";
 import Other from "./pages/Other/Other";
 import Competition from "./pages/Competition/Competition";
 import Tutorials from "./pages/Tutorials/Tutorials";
+import {useSelector} from "react-redux";
+import {StateModel} from "./Models";
+import Modal from "./components/Modal/Modal";
 
 function App() {
+
+    const modal = useSelector((state: StateModel) => state.app.modal)
+
   return (
       <div className='app'>
           <BrowserRouter>
@@ -64,6 +70,9 @@ function App() {
 
                   <Route path="/*" element={<div className='container'> <NotFound /> </div>} />
                 </Routes>
+
+
+                  {modal.show && <Modal message={modal.message} />}
               </main>
 
               </BrowserRouter>

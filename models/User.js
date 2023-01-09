@@ -40,6 +40,12 @@ const schema = new Schema({
             ref: 'Video',
         }
     ],
+    dislikes: [
+        {
+            type: String,
+            ref: 'Video',
+        }
+    ],
     viewed: [
         {
             type: String,

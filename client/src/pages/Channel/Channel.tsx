@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import ChannelHeader from "./ChannelHeader";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
@@ -6,6 +6,7 @@ import {StateModel} from "../../Models";
 import {fetchChannelVideos} from "../../redux/actions";
 import ChannelVideoList from "../../components/Video/ChannelVideoList";
 import useActionForFetchVideo from "../../hooks/useActionForFetchVideo";
+import sendFetch from "../../utils/sendFetch";
 
 
 const Channel = () => {
@@ -18,9 +19,6 @@ const Channel = () => {
         dispatch(fetchChannelVideos(channelId))
     }, [])
 
-    // let [channelVideos, loading] = useActionForFetchVideo(fetchChannelVideos(channelId), (state: StateModel) => state.channel.channelVideos)
-
-    console.log(channelVideos)
 
     if (channelVideos.videos?.length == 0) {
         channelVideos.videos = null

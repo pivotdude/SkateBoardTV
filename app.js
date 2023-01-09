@@ -19,17 +19,18 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(function(err, req, res, next) {
-  console.log(req.method)
-  if (req.method == 'OPTION') {
-    res.status(200)
-  }
-  next()
-})
+// app.use(function(err, req, res, next) {
+//   if (req.method == 'OPTION') {
+//     res.status(200)
+//   }
+//   next()
+// })
 
 AuthParse()
-var apiRouter = require('./routes/api');
-var usersRouter = require('./routes/users');
+
+const apiRouter = require('./routes/api');
+const usersRouter = require('./routes/users');
+const actionRouter = require('./routes/action');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -40,16 +41,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use('/api/action', actionRouter);
 app.use('/api', apiRouter);
-app.use('/users', usersRouter);
+app.use('/api', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  // res.status(400).json({message: "Page not found"})
+  res.status(400).json({message: "Page not found"})
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -61,9 +63,7 @@ app.use(function(err, req, res, next) {
 
 function AuthParse() {
   app.use((req, res, next) => {
-
     if (req.headers['authorization']) {
-
       // console.log(res.headers['Authorization'].replace('Bearer ', ''))
       let tokenParts = req.headers.authorization.split('.')
 
@@ -71,19 +71,13 @@ function AuthParse() {
           .update(`${tokenParts[0]}.${tokenParts[1]}`)
           .digest('base64')
           .replace('=', '')
-
-          // .replace('-', '+')
-           .replace(/\+/g, '-')
-          // .replace('_', '/')
+          .replace(/\+/g, '-')
           .replace(/\//g, '_')
-
       // console.log(`'${signature}' == '${tokenParts[2]}'`)
 
       if (signature === tokenParts[2]) {
-        // console.log('=')
         req.user = JSON.parse(Buffer.from(tokenParts[1], 'base64').toString('utf8'))
       }
-
     }
     next()
   })

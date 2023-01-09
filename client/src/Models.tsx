@@ -35,7 +35,9 @@ interface AuthorInfoModel {
     name: string,
     avatar: string,
     channelHeader: string,
-    subscribersNumbers: number
+    subscribersNumbers: number,
+    isSubscriber: boolean,
+    isAuthor: boolean
 }
 
 interface channelAboutModel {
@@ -86,6 +88,11 @@ interface fullVideoModel {
     views: number
     description: string
     tags?: Array<string>
+    isDisliked?: boolean | any,
+    isLiked?: boolean | any,
+    isSubscriptions?: boolean | any,
+    isAuthor?: boolean | any,
+
     comments?: [
         {
             from: fullAuthorModel,
@@ -106,7 +113,8 @@ export interface StateModel {
             name: string,
             avatar: string,
         },
-        subscriptions: {subscriptions: Array<SubscribeChannelModel>}
+        subscriptions: {subscriptions: Array<SubscribeChannelModel>},
+        modal: {show: boolean, message: string}
     },
     video: {
         videoById: fullVideoModel,

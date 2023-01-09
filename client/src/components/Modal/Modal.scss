@@ -1,0 +1,24 @@
+$height: 100px;
+$width: 200px;
+
+.Modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000000cc;
+  
+  &-container {
+    position: fixed;
+    top: calc(50% - $height);
+    left: calc(50% - $width);
+  }
+  &-box {
+    padding: $height $width;
+    background: #1F1D2B;
+
+    &__content {
+      color: #ffffff;
+      font-size: 20px;
+    }
+  }
+}

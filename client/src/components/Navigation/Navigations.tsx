@@ -30,12 +30,16 @@ const Navigations = () => {
 
     const dispatch = useDispatch()
     const subscriptions = useSelector((state: StateModel) => state.app.subscriptions)
+    const VideoInfo = useSelector((state: StateModel) => state.video.videoById)
+    const athInfo = useSelector((state: StateModel) => state.channel.authorInfo)
 
     useEffect(() => {
         dispatch(fetchSubscriptions())
     }, [])
 
-    console.log(subscriptions.subscriptions)
+    useEffect(() => {
+        dispatch(fetchSubscriptions())
+    }, [VideoInfo, athInfo])
 
 
     return (
@@ -56,7 +60,7 @@ const Navigations = () => {
             </NavigationMenu>
 
             <NavigationMenu title='SUBSCRIPTIONS'>
-                {/*{subscriptions && <SubscriptionsList subscriptions={subscriptions.subscriptions}  />}*/}
+                {subscriptions.subscriptions && <SubscriptionsList subscriptions={subscriptions.subscriptions}  />}
             </NavigationMenu>
 
 

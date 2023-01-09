@@ -2,8 +2,6 @@
 export const GET_VIDEO_BY_ID = 'VIDEO/GET_VIDEO_BY_ID'
 export const GET_PLAYLIST_BY_ID = 'VIDEO/GET_PLAYLIST_BY_ID'
 
-export const VIDEOS_LIST = 'VIDEO/VIDEOS_LIST'
-
 export const DISCOVER = 'VIDEO/DISCOVER'
 export const TRENDING = 'VIDEO/TRENDING'
 export const PLAYLIST = 'VIDEO/PLAYLIST'
@@ -32,4 +30,7 @@ export const SUBSCRIPTIONS = 'APP/SUBSCRIPTIONS'
 export const PROFILE = 'APP/PROFILE'
 export const SHOW_LOADER = 'APP/SHOW_LOADER'
 export const HIDE_LOADER = 'APP/HIDE_LOADER'
+export const SHOW_MODAL = 'APP/SHOW_MODAL'
+export const HIDE_MODAL = 'APP/HIDE_MODAL'
 
+export const RERENDER = 'APP/RERENDER'
