@@ -1,4 +1,4 @@
-import {HIDE_LOADER, HIDE_MODAL, PROFILE, RERENDER, SHOW_LOADER, SHOW_MODAL, SUBSCRIPTIONS} from "./types";
+import {HIDE_LOADER, HIDE_MODAL, PROFILE, SHOW_LOADER, SHOW_MODAL, SUBSCRIPTIONS} from "./types";
 import {ActionModel} from "./ActionModel";
 
 const initialState = {
@@ -37,9 +37,6 @@ export const appReducer = (state = initialState, action: ActionModel) => {
                     show: false, message: action.payload
                 }
             }
-
-        case RERENDER:
-            return {...state}
 
 
         default: return state

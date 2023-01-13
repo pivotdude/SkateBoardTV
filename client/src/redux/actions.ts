@@ -19,7 +19,7 @@ import {
     COMPETITION,
     REVIEW,
     SKATING,
-    OTHER, SUBSCRIPTIONS, SHOW_MODAL, HIDE_MODAL,
+    OTHER, SUBSCRIPTIONS, SHOW_MODAL, HIDE_MODAL, STUDIO_VIDEOS, CHANNEL_VIEWED,
 } from './types'
 
 type methods = 'GET' | 'POST'
@@ -59,7 +59,7 @@ function fetchData(route: string, types: string, method: methods = 'GET' ,data: 
     }
 }
 
-export function fetchVideoById(videoId: string | null | undefined):object {
+export function fetchVideoById(videoId: any):any {
     return fetchData(`videos/${videoId}`, GET_VIDEO_BY_ID)
 }
 
@@ -139,7 +139,7 @@ export function fetchDiscover () {
 export function fetchTrending () {
     return fetchData(`trending`, TRENDING)
 }
-export function fetchPlaylist () {
+export function fetchPlaylist (): any {
     return fetchData(`competition`, PLAYLIST)
 }
 export function fetchTutorials () {
@@ -172,9 +172,11 @@ export function hideModal() {
     return {type: HIDE_MODAL, payload: ''}
 }
 
-export function rerender() {
-    return async (dispatch: Function) => {
-        dispatch(showLoader())
-        dispatch(hideLoader())
-    }
+
+export function fetchStudioVideos():any {
+    return fetchData(`studio/videos`, STUDIO_VIDEOS)
+}
+
+export function fetchViewedOnTheChannel(videoId: string): any {
+    return fetchData(`channel/${videoId}/viewed`, CHANNEL_VIEWED)
 }

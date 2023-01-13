@@ -139,6 +139,70 @@ createCategoryRoute('/review', ["review"])
 createCategoryRoute('/skating', ["skating"])
 createCategoryRoute('/other', ["other"])
 
+router.get('/studio/videos',
+    async function (req, res, next) {
+        const results = await User.find({_id: req.user.userId}, 'videos').populate('videos',  '-tags -_id').limit(20)
+        console.log(results)
+        res.json(results)
+    }
+)
 
+router.get('/studio/videos',
+    async function (req, res, next) {
+        const results = await User.find({_id: req.user.userId}, 'videos').populate('videos',  '-tags -_id').limit(20)
+        console.log(results)
+        res.json(results)
+    }
+)
+router.get('/viewing/:videoId',
+    async function (req, res, next) {
+        const videoId = req.params["videoId"]
+
+        if (!req.user) {
+            return res.status(401).json({message: 'UnAuthorization'})
+        }
+
+        await User.findOneAndUpdate({_id : req.user.userId}, {$push : {'viewed' : videoId}})
+        await Video.findOneAndUpdate({_id : videoId}, {$inc : {'views' : 1}})
+
+        res.status(200).json({message: 'Success'})
+    }
+)
+router.get('/viewed',
+    async function (req, res, next) {
+
+        if (!req.user) {
+            return res.status(401).json({message: 'UnAuthorization'})
+        }
+
+        const ids = await User.findOne({_id : req.user.userId}, 'viewed -_id') //.populate('viewed', 'title preview duration date author views').populate('viewed.author')
+        const result = []
+        for (i of ids.viewed) {
+            result.push(await Video.findOne({_id: i}, 'title preview duration date author views').populate('author', 'name avatar').limit(20).skip(0))
+        }
+
+
+        res.status(200).json(result)
+    }
+)
+router.get('/channel/:channelId/viewed',
+    async function (req, res, next) {
+        const channelId = req.params["channelId"]
+
+        if (!req.user) {
+            return res.status(401).json({message: 'UnAuthorization'})
+        }
+
+        const ids = await User.findOne({_id : channelId}, 'viewed -_id') //.populate('viewed', 'title preview duration date author views').populate('viewed.author')
+
+        const result = []
+        for (i of ids.viewed) {
+            result.push(await Video.findOne({_id: i}, 'title preview duration date author views').populate('author', 'name avatar').limit(20).skip(0))
+        }
+
+
+        res.status(200).json(result)
+    }
+)
 
 module.exports = router;

@@ -11,7 +11,7 @@ const Competition = () => {
         <div>
             <div className='container'>
                 <p className='container__title'>Competition</p>
-                {loading ? <Loading /> : <VideosList videos={competitionVideos} display='flex' /> }
+                {competitionVideos ? <VideosList videos={competitionVideos} display='flex' /> : <Loading /> }
             </div>
         </div>
     );

@@ -77,7 +77,7 @@ interface fullAuthorModel {
     subscribersNumbers: number,
 }
 
-interface fullVideoModel {
+export interface fullVideoModel {
     _id?: string,
     title: string,
     preview: string,
@@ -120,15 +120,17 @@ export interface StateModel {
         videoById: fullVideoModel,
         playlistById: Array<PreviewVideoModel>,
         videosList: Array<PreviewVideoModel>,
+        playlistVideos: any,
 
         trendingVideos: Array<PreviewVideoModel>,
         discoverVideos: Array<PreviewVideoModel>,
-        // playlistVideos: Array<PreviewVideoModel>,
         tutorialVideos: Array<PreviewVideoModel>,
         competitionVideos: Array<PreviewVideoModel>,
         reviewVideos: Array<PreviewVideoModel>,
         skatingVideos: Array<PreviewVideoModel>,
         otherVideos: Array<PreviewVideoModel>,
+
+        studioVideos: {}
     },
     authorization: {
         auth: {},
@@ -140,7 +142,8 @@ export interface StateModel {
         channelPlaylist: {playlists: Array<PlaylistChannelModel> | null},
         channelLikes: Array<PreviewVideoModel> | null,
         channelSubscriptions: {subscriptions: Array<SubscribeChannelModel> | null},
-        channelAbout: channelAboutModel
+        channelAbout: channelAboutModel,
+        channelViewed: Array<PreviewVideoModel>
     }
 }
 

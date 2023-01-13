@@ -13,6 +13,9 @@ const VideoPlayer = (props)  => {
         }
     }, [props.url]);
 
+    console.log(props.url)
+
+
     useEffect(() => {
         const videoJsOptions = {
             preload: 'auto',
@@ -29,17 +32,24 @@ const VideoPlayer = (props)  => {
 
         videojs.registerPlugin('hlsQualitySelector', qualitySelector);
         const p = videojs(videoRef.current, videoJsOptions, function onPlayerReaady() {
-            // console.log('onPlayerReady');
+            console.log('onPlayerReady');
         });
         setPlayer(p);
         return () => {
-            if (player) player.dispose();
+            if (player) {
+                player.dispose();
+                // player.kill()
+            }
         };
     }, []);
 
     useEffect(() => {
         if (player) player.hlsQualitySelector({ displayCurrentQuality: true });
     }, [player]);
+
+
+
+
     return (
         <div data-vjs-player>
             <video ref={videoRef} className="video-js vjs-default-skin vjs-big-play-centered">

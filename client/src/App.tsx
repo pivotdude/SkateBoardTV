@@ -29,6 +29,9 @@ import Tutorials from "./pages/Tutorials/Tutorials";
 import {useSelector} from "react-redux";
 import {StateModel} from "./Models";
 import Modal from "./components/Modal/Modal";
+import Studio from "./pages/Studio/Studio";
+import Viewed from "./pages/Viewed/Viewed";
+import ChannelViewed from "./pages/Channel/ChannelViewed";
 
 function App() {
 
@@ -61,12 +64,15 @@ function App() {
                   <Route path="/channel/:channelId/videos" element={<ChannelVideos />} />
                   <Route path="/channel/:channelId/playlists" element={<ChannelPlaylists />} />
                   <Route path="/channel/:channelId/likes" element={<ChannelLikes />} />
+                  <Route path="/channel/:channelId/viewed" element={<ChannelViewed />} />
                   <Route path="/channel/:channelId/subscribes" element={<ChannelSubscriptions />} />
                   <Route path="/channel/:channelId/about" element={<ChannelAbout />} />
 
 
                   <Route path="/login" element={<Login />} />
                   <Route path="/registration" element={<Registration />} />
+                  <Route path="/studio" element={<Studio />} />
+                  <Route path="/viewed" element={<Viewed />} />
 
                   <Route path="/*" element={<div className='container'> <NotFound /> </div>} />
                 </Routes>

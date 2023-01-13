@@ -6,7 +6,7 @@ import {
     OTHER,
     PLAYLIST,
     REVIEW,
-    SKATING, TRENDING,
+    SKATING, STUDIO_VIDEOS, TRENDING,
     TUTORIAL
 } from "./types";
 import {ActionModel} from "./ActionModel";
@@ -15,10 +15,6 @@ import {StateModel} from "../Models";
 const initialState = {
     videoById: {},
     playlistById: [],
-
-    liked: {},
-
-    videosList: [],
 
     trendingVideos: [],
     discoverVideos: [],
@@ -29,7 +25,7 @@ const initialState = {
     skatingVideos: [],
     otherVideos: [],
 
-    like: {},
+    studioVideos: {}
 
 
 }
@@ -67,6 +63,12 @@ export const VideoReducer = (state = initialState, action: ActionModel) => {
 
         case OTHER:
             return {...state, otherVideos: action.payload}
+
+
+
+
+        case STUDIO_VIDEOS:
+            return {...state, studioVideos: action.payload}
 
 
 

@@ -5,7 +5,7 @@ import {
     CHANNEL_LIKES,
     CHANNEL_PLAYLIST,
     CHANNEL_SUBSCRIPTIONS,
-    CHANNEL_VIDEOS,
+    CHANNEL_VIDEOS, CHANNEL_VIEWED,
     LOGOUT,
     REGISTRATION
 } from './types'
@@ -17,7 +17,8 @@ interface channelReducerModel {
     channelPlaylist: {},
     channelLikes: [],
     channelSubscriptions: {},
-    channelAbout: {}
+    channelAbout: {},
+    channelViewed: []
 }
 
 const initialState = {
@@ -26,7 +27,8 @@ const initialState = {
     channelPlaylist: {},
     channelLikes: [],
     channelSubscriptions: {},
-    channelAbout: {}
+    channelAbout: {},
+    channelViewed: []
 }
 
 export const channelReducer = (state = <channelReducerModel> initialState, action: ActionModel) => {
@@ -48,6 +50,10 @@ export const channelReducer = (state = <channelReducerModel> initialState, actio
 
         case CHANNEL_ABOUT:
             return {...state, channelAbout: action.payload}
+
+
+        case CHANNEL_VIEWED:
+            return {...state, channelViewed: action.payload}
 
         default: return state
     }

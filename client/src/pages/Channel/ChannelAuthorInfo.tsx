@@ -9,9 +9,16 @@ import NotFound from "../404/NotFound";
 import sendFetch from "../../utils/sendFetch";
 import followImgActive from "../VideoPage/img/activateFollow.svg";
 
-const ChannelAuthorInfo = () => {
+interface ChannelAuthorInfoProps {
+    channelId: string | undefined,
+}
 
-    const {channelId} = useParams<string>()
+const ChannelAuthorInfo = (props: ChannelAuthorInfoProps) => {
+
+    // const {channelId} = useParams<string>()
+    const channelId = props.channelId
+
+
     const dispatch = useDispatch()
     const authorInfo = useSelector((state: StateModel) => state.channel.authorInfo)
     const loading = useSelector((state: StateModel) => state.app.loading)
@@ -19,13 +26,16 @@ const ChannelAuthorInfo = () => {
 
     useEffect(() => {
         dispatch(fetchAuthorInfo(channelId))
-    }, [channelId])
-
-    useEffect(() => {
         if (!loading && authorInfo) {
             setFollow(authorInfo.isSubscriber)
         }
-    }, [authorInfo])
+    }, [channelId])
+
+    // useEffect(() => {
+    //     if (!loading && authorInfo) {
+    //         setFollow(authorInfo.isSubscriber)
+    //     }
+    // }, [authorInfo])
 
     function toggleFollow () {
 
@@ -43,8 +53,6 @@ const ChannelAuthorInfo = () => {
 
         setFollow(prev => !prev)
     }
-
-    console.log(authorInfo)
 
     if (!authorInfo) {
         return <NotFound />
@@ -64,5 +72,4 @@ const ChannelAuthorInfo = () => {
         </>
     );
 }
-
-export default ChannelAuthorInfo;
+export default React.memo(ChannelAuthorInfo);

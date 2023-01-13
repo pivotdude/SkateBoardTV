@@ -5,7 +5,7 @@ import arrow from "./img/arrow.svg";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {StateModel} from "../../Models";
-import {fetchProfileInfo, fetchSubscriptions, logOutAction, rerender} from "../../redux/actions";
+import {fetchProfileInfo, fetchSubscriptions, logOutAction} from "../../redux/actions";
 
 const Profile = () => {
     let [toggle, setToggle] = useState(false)
@@ -61,7 +61,7 @@ const Profile = () => {
             </div>
             <div className='profile-menu' ref={profileMenu}>
                 <Link to={`channel/${profile._id}/`} className='profile-menu__link'>My channel</Link>
-                <p className='profile-menu__link'>My videos</p>
+                <Link to={'/studio'} className='profile-menu__link'>Studio</Link>
                 <p className='profile-menu__link'>Settings</p>
                 <p className='profile-menu__link' onClick={logoutHandler}>Log out</p>
             </div>

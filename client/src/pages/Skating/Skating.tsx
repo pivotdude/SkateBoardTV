@@ -6,11 +6,11 @@ import {fetchSkating} from "../../redux/actions";
 import Loading from "../../components/Loading/Loading";
 
 const Skating = () => {
-    const [skatingVideos, loading] = useActionForFetchVideo(fetchSkating, (state: StateModel) => state.video.videosList)
+    const [skatingVideos, loading] = useActionForFetchVideo(fetchSkating, (state: StateModel) => state.video.skatingVideos)
     return (
         <div className='container'>
             <p className='container__title'>Skating</p>
-            {loading ? <Loading /> : <VideosList videos={skatingVideos} display='flex' /> }
+            {skatingVideos ? <VideosList videos={skatingVideos} display='flex' /> : <Loading /> }
         </div>
     );
 };

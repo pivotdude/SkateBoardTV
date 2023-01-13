@@ -7,10 +7,11 @@ import Loading from "../../components/Loading/Loading";
 
 const Review = () => {
     const [reviewVideos, loading] = useActionForFetchVideo(fetchReview, (state: StateModel) => state.video.reviewVideos)
+    console.log(reviewVideos)
     return (
         <div className='container'>
             <p className='container__title'>Review</p>
-            {loading ? <Loading /> :<VideosList videos={reviewVideos} display='flex' /> }
+            {reviewVideos ? <VideosList videos={reviewVideos} display='flex' /> : <Loading />}
         </div>
     );
 };
